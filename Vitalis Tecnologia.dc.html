@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#0F1A24;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0B3B66;text-decoration:none}
+a:hover{color:#1D6FB8}
+@media (max-width:1000px){
+  [data-r="hair"]{grid-template-columns:1fr !important;gap:1px !important}
+}
+@media (max-width:640px){
+  [data-r="hair"]{gap:1px !important}
+}
+
+@media (max-width:1000px){
+  [data-r="badge"]{left:18px !important;bottom:18px !important}
+}
+@media (max-width:640px){
+  [data-r="badge"]{position:static !important;margin-top:14px !important}
+  [data-r="xaxis"] > div:nth-child(even){display:none !important}
+}
+@media (max-width:460px){
+  [data-r="xaxis"] > div:nth-child(4n+2), [data-r="xaxis"] > div:nth-child(4n+3), [data-r="xaxis"] > div:nth-child(4n+4){display:none !important}
+}
+
+@media (max-width:1000px){
+  [data-r="stack"]{grid-template-columns:1fr !important;gap:34px !important}
+  [data-r="stack"] > *{grid-column:auto !important}
+  [data-r="tablebox"]{overflow-x:auto !important}
+  [data-r="trow"]{min-width:680px}
+  [data-r="side"]{height:auto !important;position:static !important;border-right:0 !important;border-bottom:1px solid rgba(11,59,102,.12) !important}
+  [data-r="side"] nav{display:flex !important;flex-wrap:wrap !important;overflow:visible !important}
+  [data-r="side"] nav > div{margin-bottom:10px !important}
+  header > div{height:auto !important;flex-wrap:wrap !important;padding-top:14px !important;padding-bottom:14px !important;gap:14px !important}
+  header nav{order:3 !important;width:100% !important;overflow-x:auto !important;gap:22px !important;padding-bottom:4px !important;-webkit-overflow-scrolling:touch}
+  header nav > a, header nav > div{flex:none !important;white-space:nowrap !important}
+  section, article{padding-left:26px !important;padding-right:26px !important}
+  footer > div{padding-left:26px !important;padding-right:26px !important}
+  [style*="position:sticky"][style*="top:110px"], [style*="position:sticky"][style*="top:88px"]{position:static !important}
+  h1{font-size:44px !important;line-height:1.08 !important}
+  h2{font-size:34px !important;line-height:1.14 !important}
+  h3{font-size:27px !important}
+  [style*="min-width:400px"]{min-width:0 !important}
+  [style*="min-width:260px"]{min-width:0 !important}
+}
+@media (max-width:640px){
+  section, article{padding-left:20px !important;padding-right:20px !important;padding-top:44px !important}
+  footer > div{padding-left:20px !important;padding-right:20px !important}
+  h1{font-size:36px !important}
+  h2{font-size:28px !important}
+  h3{font-size:23px !important}
+  [data-r="stack"]{gap:26px !important}
+  [data-r="lead"]{font-size:16px !important;line-height:1.6 !important}
+  [style*="height:420px"]{height:220px !important}
+  [style*="min-height:340px"]{min-height:200px !important}
+}
+
+.nav-drop{display:none}
+.nav-has:hover .nav-drop{display:block}
+html{scroll-behavior:smooth}
+
+@media (max-width:640px){
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"]{padding:9px 20px !important;justify-content:flex-end !important}
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"] > span:first-child{display:none !important}
+}
+
+@media (max-width:640px){
+  a[href^="https://wa.me/"][style*="position: fixed; right: 26px; bottom: 26px;"]{
+    width:52px !important;height:52px !important;padding:0 !important;
+    right:16px !important;bottom:16px !important;
+    font-size:0 !important;line-height:0 !important;
+    display:flex !important;align-items:center !important;justify-content:center !important;
+    background:#0B3B66 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/%3E%3C/svg%3E") no-repeat center/24px 24px !important;
+  }
+}
+
+.nav-toggle-cb{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.nav-burger{display:none}
+@media (max-width:1000px){
+  .nav-burger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:26px;height:20px;cursor:pointer;margin-left:auto}
+  .nav-burger span{display:block;height:2px;background:#0B3B66;border-radius:2px;transition:transform .2s,opacity .2s}
+  header nav{
+    display:none !important;
+    position:absolute !important;
+    top:100% !important;left:0 !important;right:0 !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    background:#FBFAF7 !important;
+    border-bottom:1px solid rgba(11,59,102,.12) !important;
+    box-shadow:0 18px 30px rgba(11,59,102,.12) !important;
+    padding:8px 26px 18px !important;
+    overflow:visible !important;
+    gap:0 !important;
+    height:auto !important;
+    order:0 !important;
+    width:auto !important;
+  }
+  header nav > a, header nav > div.nav-has{
+    flex:none !important;white-space:normal !important;width:100% !important;
+    padding:13px 0 !important;border-bottom:1px solid rgba(11,59,102,.08) !important;
+  }
+  .nav-toggle-cb:checked ~ nav{display:flex !important}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-drop{display:block !important;position:static !important;padding-top:0 !important}
+  .nav-drop > div{box-shadow:none !important;border:0 !important;padding:2px 0 8px 14px !important;min-width:0 !important;background:transparent !important}
+  .nav-has{flex-direction:column !important;align-items:flex-start !important;height:auto !important;padding-bottom:2px !important}
+  .nav-has > span{padding:0 0 6px !important;font-weight:500;color:#0B3B66;display:block}
+  .nav-drop a{border-bottom:0 !important;padding:8px 0 !important}
+  header nav ~ a{display:none !important}
+}
+@media (min-width:1001px){
+  .nav-toggle-cb, .nav-burger{display:none !important}
+}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<div style="background:#0B3B66;color:#EAF2FA;font-size:12.5px;letter-spacing:.02em">
+  <div style="max-width:1280px;margin:0 auto;padding:9px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <span style="opacity:.85">Herramientas propias, desarrolladas en casa por actuarios y desarrolladores de Vitalis</span>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="tel:525552353000" style="color:#EAF2FA;opacity:.85">52 (55) 5235 3000</a>
+      <div style="display:flex;gap:2px;align-items:center">
+        <span style="padding:3px 8px;border-radius:3px;background:rgba(255,255,255,.16);font-weight:600">ES</span>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">EN</a>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">FR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header style="position:sticky;top:0;z-index:40;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,59,102,.12)">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:40px">
+    <a href="Vitalis Home.dc.html" style="display:flex;align-items:baseline;gap:9px">
+      <span style="font-family:Newsreader,serif;font-size:27px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+      <span style="width:6px;height:6px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+    </a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle-cb"><label for="navtoggle" class="nav-burger" aria-label="Abrir menú"><span></span><span></span><span></span></label><nav style="display:flex;align-items:center;gap:26px;font-size:14.5px;height:100%">
+      <a href="Vitalis Nosotros.dc.html">Nosotros</a>
+      <a href="Vitalis Inversiones.dc.html">Inversiones</a>
+      <div class="nav-has" style="position:relative;display:flex;align-items:center;height:100%">
+        <span style="cursor:pointer">Actuaría</span>
+        <div class="nav-drop" style="position:absolute;top:100%;left:-18px;padding-top:10px">
+          <div style="background:#FBFAF7;border:1px solid rgba(11,59,102,.14);border-radius:6px;box-shadow:0 18px 40px rgba(11,59,102,.14);padding:8px;min-width:290px">
+            <a href="Vitalis Pasivos Laborales.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Pasivos laborales</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">NIF D-3, IFRS, US GAAP y German GAAP</span>
+            </a>
+            <a href="Vitalis Planes de Pensiones.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Planes de pensiones privados</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">Diseño, implementación y administración</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a href="Vitalis Tecnologia.dc.html" style="color:#0B3B66;font-weight:500;border-bottom:2px solid #1D6FB8;padding-bottom:3px">Tecnología</a>
+      <a href="Vitalis Blog.dc.html">Blog</a>
+      <a href="Vitalis Usuarios.dc.html">Usuarios</a>
+    </nav>
+    <a href="Vitalis En Construccion.dc.html?p=Agenda%20tu%20diagn%C3%B3stico" style="background:#0B3B66;color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:500;white-space:nowrap" style-hover="background:#1D6FB8;color:#fff">Agendar diagnóstico</a>
+  </div>
+</header>
+
+<section style="max-width:1280px;margin:0 auto;padding:72px 40px 0">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45);margin-bottom:46px">
+    <a href="Vitalis Home.dc.html" style="color:rgba(15,26,36,.45)">Inicio</a> · <span style="color:#0B3B66">Tecnología</span>
+  </div>
+  <div data-r="stack" style="display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:end;padding-bottom:64px">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:26px">
+        <span style="width:22px;height:1px;background:#1D6FB8;display:inline-block"></span>Tecnología
+      </div>
+      <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:62px;line-height:1.05;letter-spacing:-.02em;margin:0 0 26px;color:#0B3B66;text-wrap:pretty">La actuaría deja de ser<span style="display:block;font-style:italic;color:#1D6FB8">una caja negra</span></h1>
+      <p style="font-size:18px;line-height:1.62;color:rgba(15,26,36,.68);max-width:560px;margin:0 0 36px;font-weight:300">Desarrollamos nuestras propias herramientas para que puedas cotizar, calcular, consultar tus documentos y seguir tus rendimientos sin esperar a que alguien te mande un correo.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px">
+        <a href="#herramientas" style="background:#0B3B66;color:#fff;padding:16px 30px;border-radius:100px;font-size:15px;font-weight:500" style-hover="background:#1D6FB8;color:#fff">Ver herramientas</a>
+        <a href="#calculadora" style="padding:16px 26px;border-radius:100px;font-size:15px;font-weight:500;border:1px solid rgba(11,59,102,.22)" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.06)">Probar la calculadora</a>
+      </div>
+    </div>
+    <div data-r="hair" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(11,59,102,.14);border:1px solid rgba(11,59,102,.14)">
+      <sc-for list="{{ heroStats }}" as="s" hint-placeholder-count="4">
+        <div style="background:#FBFAF7;padding:24px 22px">
+          <div style="font-family:Newsreader,serif;font-size:34px;line-height:1;color:#0B3B66">{{ s.n }}</div>
+          <div style="font-size:12.5px;line-height:1.45;color:rgba(15,26,36,.55);margin-top:9px;font-weight:300">{{ s.t }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="herramientas" style="border-top:1px solid rgba(11,59,102,.12);scroll-margin-top:80px">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">01 — Herramientas</div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:32px;flex-wrap:wrap">
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0;color:#0B3B66;max-width:520px;text-wrap:pretty">Seis herramientas en operación</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{ filtros }}" as="f" hint-placeholder-count="4">
+          <button onClick="{{ f.pick }}" style="border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};padding:9px 16px;border-radius:100px;font-size:13.5px;cursor:pointer">{{ f.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <sc-for list="{{ herramientas }}" as="h" hint-placeholder-count="6">
+        <a href="{{ h.href }}" style="border:1px solid rgba(11,59,102,.15);border-radius:6px;background:#FBFAF7;padding:30px 28px 26px;display:flex;flex-direction:column;gap:13px;min-height:250px" style-hover="background:#F2F6FB;border-color:rgba(29,111,184,.45)">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:rgba(15,26,36,.42)">{{ h.publico }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;background:{{ h.stBg }};color:{{ h.stFg }};border-radius:3px;padding:3px 8px">{{ h.estado }}</span>
+          </div>
+          <span style="font-family:Newsreader,serif;font-size:26px;line-height:1.2;color:#0B3B66">{{ h.nombre }}</span>
+          <span style="font-size:14.5px;line-height:1.6;color:rgba(15,26,36,.62);font-weight:300">{{ h.body }}</span>
+          <span style="margin-top:auto;font-size:13.5px;color:#1D6FB8">{{ h.cta }} →</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="calculadora" style="background:#0B3B66;color:#EAF2FA;scroll-margin-top:80px">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:100px 40px;display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FC0EC;margin-bottom:18px">02 — Calculadora</div>
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0 0 22px;text-wrap:pretty">Pruébala aquí mismo</h2>
+      <p style="font-size:16.5px;line-height:1.65;color:rgba(234,242,250,.72);font-weight:300;margin:0 0 30px;max-width:430px">Sin registro y sin descargar nada. La misma calculadora que integramos en el portal de tus colaboradores.</p>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.8;color:rgba(234,242,250,.5)">Rendimiento real anual: 5%<br>Retiro a los 65 años · 18 años de pensión</div>
+    </div>
+    <div style="background:#FBFAF7;color:#0F1A24;border-radius:6px;padding:44px;box-shadow:0 30px 60px rgba(0,0,0,.22)">
+      <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:34px">
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.5)">Edad actual · {{ age }} años</span>
+          <input type="range" min="18" max="64" value="{{ age }}" onChange="{{ onAge }}" style="width:100%;accent-color:#1D6FB8">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.5)">Pensión mensual deseada</span>
+          <input type="text" value="{{ pensionText }}" onChange="{{ onPension }}" style="width:100%;border:0;border-bottom:1px solid rgba(11,59,102,.28);background:transparent;font-size:22px;font-family:Newsreader,serif;color:#0B3B66;padding:0 0 8px;outline:none">
+        </label>
+      </div>
+      <div style="border-top:1px solid rgba(11,59,102,.14);padding-top:30px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.5);margin-bottom:12px">Ahorro mensual necesario</div>
+          <div style="font-family:Newsreader,serif;font-size:56px;line-height:1;color:#0B3B66">{{ monthly }}</div>
+          <div style="font-size:13px;color:rgba(15,26,36,.55);margin-top:10px;font-weight:300">durante {{ yearsLeft }} años · capital objetivo {{ capital }}</div>
+        </div>
+        <a href="https://millasparaelretiro.com" style="background:#0B3B66;color:#fff;padding:14px 24px;border-radius:100px;font-size:14px;font-weight:500" style-hover="background:#1D6FB8;color:#fff">Empezar mi plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:104px 40px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">03 — Documentos</div>
+  <div data-r="stack" style="display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start">
+    <div style="position:sticky;top:110px">
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0 0 22px;color:#0B3B66;text-wrap:pretty">Tu expediente actuarial, siempre disponible</h2>
+      <p style="font-size:16.5px;line-height:1.65;color:rgba(15,26,36,.68);font-weight:300;margin:0 0 26px">Dictámenes, estados de cuenta, reportes de inversión y actas del comité en un solo lugar, con control de versiones y acceso por rol. Se acabó buscar el PDF en el correo del año pasado.</p>
+      <a href="Vitalis Expediente Digital.dc.html" style="border-bottom:1px solid rgba(11,59,102,.3);padding-bottom:3px;font-size:15px">Entrar al expediente digital →</a>
+    </div>
+    <div style="border:1px solid rgba(11,59,102,.15);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(11,59,102,.09)">
+      <div style="background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);padding:12px 18px;display:flex;align-items:center;gap:12px">
+        <div style="display:flex;gap:6px">
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(11,59,102,.18);display:inline-block"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(11,59,102,.18);display:inline-block"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(11,59,102,.18);display:inline-block"></span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(15,26,36,.45)">vitalis.com.mx/documentos</span>
+      </div>
+      <div style="display:flex;gap:24px;padding:0 22px;border-bottom:1px solid rgba(11,59,102,.12)">
+        <sc-for list="{{ carpetas }}" as="c" hint-placeholder-count="3">
+          <button onClick="{{ c.pick }}" style="border:0;background:transparent;padding:14px 0;font-size:13.5px;color:{{ c.fg }};border-bottom:2px solid {{ c.bar }};cursor:pointer;font-weight:{{ c.weight }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+      <div style="padding:6px 0">
+        <sc-for list="{{ archivos }}" as="a" hint-placeholder-count="5">
+          <div data-r="stack" style="display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding:14px 22px;border-bottom:1px solid rgba(11,59,102,.07)">
+            <div style="display:flex;align-items:center;gap:14px;min-width:0">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;border:1px solid rgba(29,111,184,.4);border-radius:3px;padding:2px 5px;color:#1D6FB8;flex:none">{{ a.tipo }}</span>
+              <span style="font-size:14.5px;color:#0B3B66;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ a.nombre }}</span>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45)">{{ a.fecha }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.35)">{{ a.peso }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid rgba(11,59,102,.12);background:#F5F2EC">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">04 — Cómo trabajamos</div>
+    <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0 0 48px;color:#0B3B66;max-width:600px;text-wrap:pretty">Software propio, no licencias de terceros</h2>
+    <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:40px">
+      <sc-for list="{{ principios }}" as="p" hint-placeholder-count="3">
+        <div style="border-top:2px solid #0B3B66;padding-top:22px">
+          <div style="font-family:Newsreader,serif;font-size:26px;line-height:1.2;color:#0B3B66;margin-bottom:14px">{{ p.title }}</div>
+          <p style="margin:0;font-size:15.5px;line-height:1.62;color:rgba(15,26,36,.65);font-weight:300">{{ p.body }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0B3B66;color:#EAF2FA">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center">
+    <div>
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:52px;line-height:1.08;margin:0 0 20px;text-wrap:pretty">Te damos una <span style="font-style:italic;color:#8FC0EC">demo en vivo</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:rgba(234,242,250,.7);font-weight:300;margin:0;max-width:540px">Veinte minutos con tu equipo para recorrer el cotizador, el expediente digital y el portal del colaborador con datos de ejemplo.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:260px">
+      <a href="Vitalis En Construccion.dc.html?p=Agenda%20tu%20diagn%C3%B3stico" style="background:#FBFAF7;color:#0B3B66;padding:16px 30px;border-radius:100px;font-size:15px;font-weight:500;text-align:center" style-hover="background:#8FC0EC;color:#0B3B66">Agendar demo</a>
+      <a href="https://wa.me/525541430497" style="border:1px solid rgba(234,242,250,.35);color:#EAF2FA;padding:16px 30px;border-radius:100px;font-size:15px;font-weight:500;text-align:center" style-hover="border-color:#EAF2FA;background:rgba(255,255,255,.08);color:#EAF2FA">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#08284A;color:rgba(234,242,250,.7);font-size:14px">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:60px 40px 34px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px">
+    <div>
+      <div style="font-family:Newsreader,serif;font-size:26px;letter-spacing:.14em;color:#FBFAF7;margin-bottom:18px">VITALIS</div>
+      <p style="line-height:1.65;font-weight:300;margin:0;max-width:300px">Vitalis® Expertos en Pensiones S.A. de C.V. Miembro de la red internacional de actuarios ABELICA Global.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">México</div>
+      <p style="line-height:1.65;font-weight:300;margin:0">Gobernador Rafael Rebollar 47 y 56, San Miguel Chapultepec, C.P. 11850, CDMX<br>T: 52 (55) 5235 3000</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">Más</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="Vitalis Home.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inicio</a>
+        <a href="Vitalis Inversiones.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inversiones</a>
+        <a href="Vitalis Pasivos Laborales.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Pasivos laborales</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 40px 40px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:24px;font-size:12.5px;color:rgba(234,242,250,.45)">
+    <span>©2026 Todos los derechos reservados · Vitalis</span>
+    <a href="Vitalis En Construccion.dc.html?p=Aviso%20de%20Privacidad" style="color:rgba(234,242,250,.6)">Aviso de Privacidad</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/525541430497" style="position:fixed;right:26px;bottom:26px;z-index:60;background:#0B3B66;color:#fff;padding:14px 22px;border-radius:100px;font-size:14px;font-weight:500;box-shadow:0 12px 30px rgba(11,59,102,.32)" style-hover="background:#1D6FB8;color:#fff">WhatsApp</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { filtro: "Todas", carpeta: "Valuaciones", age: 34, pension: 25000 };
+
+  fmt(n) { return "$" + Math.round(n).toLocaleString("es-MX"); }
+
+  renderVals() {
+    const s = this.state;
+
+    const toolsData = [
+      { nombre: "Cotizador", publico: "Empresa", estado: "En línea", body: "Estima el costo de tu valuación de pasivos laborales con seis datos y recibe la propuesta formal por correo.", cta: "Cotizar", href: "Vitalis Pasivos Laborales.dc.html#cotizador", grupo: "Empresa" },
+      { nombre: "Calculadora de ahorro", publico: "Colaborador", estado: "En línea", body: "Cuánto necesita ahorrar cada mes un colaborador para sostener la pensión que quiere.", cta: "Probar", href: "#calculadora", grupo: "Colaborador" },
+      { nombre: "Expediente digital", publico: "Empresa", estado: "Requiere acceso", body: "Dictámenes, estados de cuenta y actas del comité con control de versiones y permisos por rol.", cta: "Entrar", href: "Vitalis Expediente Digital.dc.html", grupo: "Empresa" },
+      { nombre: "Graficador", publico: "Comité", estado: "En línea", body: "Compara el rendimiento de tu fondo contra su benchmark y contra las estrategias Vitalis en el periodo que elijas.", cta: "Abrir", href: "Vitalis Graficador.dc.html", grupo: "Comité" },
+      { nombre: "Kit de inversiones", publico: "Comité", estado: "Requiere acceso", body: "Factsheets, política de inversión, actas y material de sesión listos para tu próximo comité.", cta: "Descargar", href: "https://vitalis.com.mx/data/kitv/expv/", grupo: "Comité" },
+      { nombre: "Millas para el Retiro", publico: "Colaborador", estado: "En línea", body: "El primer sistema de ahorro para el retiro a través del gasto cotidiano. Innovación reconocida a nivel mundial.", cta: "Conocer", href: "https://millasparaelretiro.com", grupo: "Colaborador" }
+    ];
+    const shown = toolsData.filter(t => s.filtro === "Todas" || t.grupo === s.filtro);
+
+    const archivosData = {
+      Valuaciones: [
+        { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · Ejercicio 2025", fecha: "12 ene 2026", peso: "1.2 MB" },
+        { tipo: "PDF", nombre: "Notas de revelación · Estados financieros 2025", fecha: "12 ene 2026", peso: "480 KB" },
+        { tipo: "XLSX", nombre: "Escenarios de sensibilidad · tasa de descuento", fecha: "09 ene 2026", peso: "220 KB" },
+        { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · Ejercicio 2024", fecha: "15 ene 2025", peso: "1.1 MB" }
+      ],
+      "Estados de cuenta": [
+        { tipo: "PDF", nombre: "Estado de cuenta del fondo · julio 2026", fecha: "05 ago 2026", peso: "340 KB" },
+        { tipo: "PDF", nombre: "Estado de cuenta del fondo · junio 2026", fecha: "04 jul 2026", peso: "336 KB" },
+        { tipo: "XLSX", nombre: "Movimientos del trimestre · abril–junio 2026", fecha: "04 jul 2026", peso: "180 KB" }
+      ],
+      "Comité de inversión": [
+        { tipo: "PDF", nombre: "Acta de sesión · comité de inversión 2026-02", fecha: "22 jul 2026", peso: "260 KB" },
+        { tipo: "PPTX", nombre: "Material de sesión · desempeño y asignación", fecha: "20 jul 2026", peso: "4.6 MB" },
+        { tipo: "PDF", nombre: "Política de inversión vigente", fecha: "14 feb 2026", peso: "520 KB" }
+      ]
+    };
+
+    const yearsLeft = Math.max(1, 65 - s.age);
+    const capital = s.pension * 12 * 18;
+    const r = 0.05 / 12, n = yearsLeft * 12;
+
+    return {
+      heroStats: [
+        { n: "6", t: "herramientas propias en operación" },
+        { n: "24/7", t: "acceso al expediente digital" },
+        { n: "0", t: "licencias de terceros en el cálculo actuarial" },
+        { n: "1°", t: "sistema de ahorro para el retiro vía gasto" }
+      ],
+      filtros: ["Todas", "Empresa", "Comité", "Colaborador"].map(label => ({
+        label,
+        bg: s.filtro === label ? "#0B3B66" : "transparent",
+        fg: s.filtro === label ? "#FBFAF7" : "rgba(15,26,36,.62)",
+        border: s.filtro === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ filtro: label })
+      })),
+      herramientas: shown.map(t => Object.assign({}, t, {
+        stBg: t.estado === "En línea" ? "rgba(62,142,90,.12)" : "rgba(11,59,102,.08)",
+        stFg: t.estado === "En línea" ? "#2F6B45" : "rgba(15,26,36,.5)"
+      })),
+      carpetas: Object.keys(archivosData).map(label => ({
+        label,
+        fg: s.carpeta === label ? "#0B3B66" : "rgba(15,26,36,.5)",
+        bar: s.carpeta === label ? "#0B3B66" : "transparent",
+        weight: s.carpeta === label ? "500" : "400",
+        pick: () => this.setState({ carpeta: label })
+      })),
+      archivos: archivosData[s.carpeta],
+      principios: [
+        { title: "Desarrollado en casa", body: "Actuarios y desarrolladores trabajando en el mismo equipo. El modelo de cálculo y la interfaz se diseñan juntos, no se compran por separado." },
+        { title: "Datos que no salen de México", body: "La información de tu personal se procesa bajo la Ley Federal de Protección de Datos Personales, con acceso por rol y bitácora de consultas." },
+        { title: "Integrable con tu nómina", body: "Recibimos el censo en el formato que ya exportas. No cambiamos tu sistema para que hable con el nuestro." }
+      ],
+      age: s.age, yearsLeft,
+      pensionText: this.fmt(s.pension),
+      capital: this.fmt(capital),
+      monthly: this.fmt(capital * r / (Math.pow(1 + r, n) - 1)),
+      onAge: e => this.setState({ age: +e.target.value }),
+      onPension: e => {
+        const v = parseInt(String(e.target.value).replace(/[^0-9]/g, ""), 10);
+        this.setState({ pension: isNaN(v) ? 0 : Math.min(v, 500000) });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

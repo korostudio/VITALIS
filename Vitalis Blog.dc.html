@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#0F1A24;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0B3B66;text-decoration:none}
+a:hover{color:#1D6FB8}
+@media (max-width:1000px){
+  [data-r="hair"]{grid-template-columns:1fr !important;gap:1px !important}
+}
+@media (max-width:640px){
+  [data-r="hair"]{gap:1px !important}
+}
+
+@media (max-width:1000px){
+  [data-r="badge"]{left:18px !important;bottom:18px !important}
+}
+@media (max-width:640px){
+  [data-r="badge"]{position:static !important;margin-top:14px !important}
+  [data-r="xaxis"] > div:nth-child(even){display:none !important}
+}
+@media (max-width:460px){
+  [data-r="xaxis"] > div:nth-child(4n+2), [data-r="xaxis"] > div:nth-child(4n+3), [data-r="xaxis"] > div:nth-child(4n+4){display:none !important}
+}
+
+@media (max-width:1000px){
+  [data-r="stack"]{grid-template-columns:1fr !important;gap:34px !important}
+  [data-r="stack"] > *{grid-column:auto !important}
+  [data-r="tablebox"]{overflow-x:auto !important}
+  [data-r="trow"]{min-width:680px}
+  [data-r="side"]{height:auto !important;position:static !important;border-right:0 !important;border-bottom:1px solid rgba(11,59,102,.12) !important}
+  [data-r="side"] nav{display:flex !important;flex-wrap:wrap !important;overflow:visible !important}
+  [data-r="side"] nav > div{margin-bottom:10px !important}
+  header > div{height:auto !important;flex-wrap:wrap !important;padding-top:14px !important;padding-bottom:14px !important;gap:14px !important}
+  header nav{order:3 !important;width:100% !important;overflow-x:auto !important;gap:22px !important;padding-bottom:4px !important;-webkit-overflow-scrolling:touch}
+  header nav > a, header nav > div{flex:none !important;white-space:nowrap !important}
+  section, article{padding-left:26px !important;padding-right:26px !important}
+  footer > div{padding-left:26px !important;padding-right:26px !important}
+  [style*="position:sticky"][style*="top:110px"], [style*="position:sticky"][style*="top:88px"]{position:static !important}
+  h1{font-size:44px !important;line-height:1.08 !important}
+  h2{font-size:34px !important;line-height:1.14 !important}
+  h3{font-size:27px !important}
+  [style*="min-width:400px"]{min-width:0 !important}
+  [style*="min-width:260px"]{min-width:0 !important}
+}
+@media (max-width:640px){
+  section, article{padding-left:20px !important;padding-right:20px !important;padding-top:44px !important}
+  footer > div{padding-left:20px !important;padding-right:20px !important}
+  h1{font-size:36px !important}
+  h2{font-size:28px !important}
+  h3{font-size:23px !important}
+  [data-r="stack"]{gap:26px !important}
+  [data-r="lead"]{font-size:16px !important;line-height:1.6 !important}
+  [style*="height:420px"]{height:220px !important}
+  [style*="min-height:340px"]{min-height:200px !important}
+}
+
+.nav-drop{display:none}
+.nav-has:hover .nav-drop{display:block}
+
+@media (max-width:640px){
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"]{padding:9px 20px !important;justify-content:flex-end !important}
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"] > span:first-child{display:none !important}
+}
+
+@media (max-width:640px){
+  a[href^="https://wa.me/"][style*="position: fixed; right: 26px; bottom: 26px;"]{
+    width:52px !important;height:52px !important;padding:0 !important;
+    right:16px !important;bottom:16px !important;
+    font-size:0 !important;line-height:0 !important;
+    display:flex !important;align-items:center !important;justify-content:center !important;
+    background:#0B3B66 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/%3E%3C/svg%3E") no-repeat center/24px 24px !important;
+  }
+}
+
+.nav-toggle-cb{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.nav-burger{display:none}
+@media (max-width:1000px){
+  .nav-burger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:26px;height:20px;cursor:pointer;margin-left:auto}
+  .nav-burger span{display:block;height:2px;background:#0B3B66;border-radius:2px;transition:transform .2s,opacity .2s}
+  header nav{
+    display:none !important;
+    position:absolute !important;
+    top:100% !important;left:0 !important;right:0 !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    background:#FBFAF7 !important;
+    border-bottom:1px solid rgba(11,59,102,.12) !important;
+    box-shadow:0 18px 30px rgba(11,59,102,.12) !important;
+    padding:8px 26px 18px !important;
+    overflow:visible !important;
+    gap:0 !important;
+    height:auto !important;
+    order:0 !important;
+    width:auto !important;
+  }
+  header nav > a, header nav > div.nav-has{
+    flex:none !important;white-space:normal !important;width:100% !important;
+    padding:13px 0 !important;border-bottom:1px solid rgba(11,59,102,.08) !important;
+  }
+  .nav-toggle-cb:checked ~ nav{display:flex !important}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-drop{display:block !important;position:static !important;padding-top:0 !important}
+  .nav-drop > div{box-shadow:none !important;border:0 !important;padding:2px 0 8px 14px !important;min-width:0 !important;background:transparent !important}
+  .nav-has{flex-direction:column !important;align-items:flex-start !important;height:auto !important;padding-bottom:2px !important}
+  .nav-has > span{padding:0 0 6px !important;font-weight:500;color:#0B3B66;display:block}
+  .nav-drop a{border-bottom:0 !important;padding:8px 0 !important}
+  header nav ~ a{display:none !important}
+}
+@media (min-width:1001px){
+  .nav-toggle-cb, .nav-burger{display:none !important}
+}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<div style="background:#0B3B66;color:#EAF2FA;font-size:12.5px">
+  <div style="max-width:1280px;margin:0 auto;padding:9px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <span style="opacity:.85">Publicaciones del equipo actuarial y de inversiones de Vitalis</span>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="tel:525552353000" style="color:#EAF2FA;opacity:.85">52 (55) 5235 3000</a>
+      <div style="display:flex;gap:2px;align-items:center">
+        <span style="padding:3px 8px;border-radius:3px;background:rgba(255,255,255,.16);font-weight:600">ES</span>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">EN</a>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">FR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header style="position:sticky;top:0;z-index:40;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,59,102,.12)">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:36px">
+    <a href="Vitalis Home.dc.html" style="display:flex;align-items:baseline;gap:9px">
+      <span style="font-family:Newsreader,serif;font-size:27px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+      <span style="width:6px;height:6px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+    </a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle-cb"><label for="navtoggle" class="nav-burger" aria-label="Abrir menú"><span></span><span></span><span></span></label><nav style="display:flex;align-items:center;gap:26px;font-size:14.5px;height:100%">
+      <a href="Vitalis Nosotros.dc.html">Nosotros</a>
+      <a href="Vitalis Inversiones.dc.html">Inversiones</a>
+      <div class="nav-has" style="position:relative;display:flex;align-items:center;height:100%">
+        <span style="cursor:pointer">Actuaría</span>
+        <div class="nav-drop" style="position:absolute;top:100%;left:-18px;padding-top:10px">
+          <div style="background:#FBFAF7;border:1px solid rgba(11,59,102,.14);border-radius:6px;box-shadow:0 18px 40px rgba(11,59,102,.14);padding:8px;min-width:290px">
+            <a href="Vitalis Pasivos Laborales.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Pasivos laborales</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">NIF D-3, IFRS, US GAAP y German GAAP</span>
+            </a>
+            <a href="Vitalis Planes de Pensiones.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Planes de pensiones privados</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">Diseño, implementación y administración</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a href="Vitalis Tecnologia.dc.html">Tecnología</a>
+      <a href="Vitalis Blog.dc.html" style="color:#0B3B66;font-weight:500;border-bottom:2px solid #1D6FB8;padding-bottom:3px">Blog</a>
+      <a href="Vitalis Usuarios.dc.html">Usuarios</a>
+    </nav>
+    <a href="Vitalis En Construccion.dc.html?p=Agenda%20tu%20diagn%C3%B3stico" style="background:#0B3B66;color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:500;white-space:nowrap" style-hover="background:#1D6FB8;color:#fff">Agendar diagnóstico</a>
+  </div>
+</header>
+
+<section style="max-width:1280px;margin:0 auto;padding:64px 40px 0">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45);margin-bottom:40px">
+    <a href="Vitalis Home.dc.html" style="color:rgba(15,26,36,.45)">Inicio</a> · <span style="color:#0B3B66">Blog</span>
+  </div>
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(11,59,102,.14)">
+    <div>
+      <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:56px;line-height:1.05;letter-spacing:-.02em;margin:0 0 18px;color:#0B3B66;text-wrap:pretty">Publicaciones</h1>
+      <p style="font-size:17.5px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300;margin:0;max-width:520px">Lo que escriben nuestros actuarios y gestores sobre normatividad, pensiones y mercados.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ filtros }}" as="f" hint-placeholder-count="5">
+        <button onClick="{{ f.pick }}" style="border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};padding:9px 17px;border-radius:100px;font-size:13.5px;cursor:pointer">{{ f.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:44px 40px 0">
+  <sc-if value="{{ hasDestacado }}" hint-placeholder-val="{{ true }}">
+    <a href="Vitalis Articulo.dc.html" data-r="stack" style="display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;border:1px solid rgba(11,59,102,.15);border-radius:8px;overflow:hidden;background:#fff;margin-bottom:44px" style-hover="border-color:rgba(29,111,184,.45)">
+      <div style="padding:52px 48px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#1D6FB8">Destacado</span>
+          <span style="width:20px;height:1px;background:rgba(11,59,102,.25)"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(15,26,36,.45)">{{ destacado.cat }} · {{ destacado.fecha }}</span>
+        </div>
+        <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:38px;line-height:1.14;margin:0 0 18px;color:#0B3B66;text-wrap:pretty">{{ destacado.titulo }}</h2>
+        <p style="font-size:16.5px;line-height:1.65;color:rgba(15,26,36,.66);font-weight:300;margin:0 0 26px">{{ destacado.extracto }}</p>
+        <div style="display:flex;align-items:center;gap:16px;font-size:13.5px;color:rgba(15,26,36,.5)">
+          <span>{{ destacado.autor }}</span><span style="opacity:.4">·</span><span>{{ destacado.lectura }}</span>
+        </div>
+      </div>
+      <div style="height:100%;min-height:340px;background:repeating-linear-gradient(135deg,#E7EEF6 0 16px,#F3F7FB 16px 32px);display:flex;align-items:flex-end;padding:20px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(11,59,102,.42)">imagen del artículo</span>
+      </div>
+    </a>
+  </sc-if>
+
+  <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+    <sc-for list="{{ posts }}" as="p" hint-placeholder-count="6">
+      <a href="Vitalis Articulo.dc.html" style="border:1px solid rgba(11,59,102,.15);border-radius:8px;overflow:hidden;background:#fff;display:flex;flex-direction:column" style-hover="border-color:rgba(29,111,184,.45);background:#F7FAFD">
+        <div style="height:170px;background:{{ p.tint }};display:flex;align-items:flex-end;padding:14px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;background:#fff;border-radius:3px;padding:3px 8px;color:#1D6FB8">{{ p.cat }}</span>
+        </div>
+        <div style="padding:26px 26px 24px;display:flex;flex-direction:column;gap:12px;flex:1">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(15,26,36,.45)">{{ p.fecha }}</span>
+          <span style="font-family:Newsreader,serif;font-size:24px;line-height:1.2;color:#0B3B66;text-wrap:pretty">{{ p.titulo }}</span>
+          <span style="font-size:14.5px;line-height:1.6;color:rgba(15,26,36,.62);font-weight:300">{{ p.extracto }}</span>
+          <span style="margin-top:auto;padding-top:18px;border-top:1px solid rgba(11,59,102,.12);display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:rgba(15,26,36,.5)">
+            {{ p.autor }}<span style="color:#1D6FB8">{{ p.lectura }}</span>
+          </span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ vacio }}" hint-placeholder-val="{{ false }}">
+    <div style="padding:70px 0;text-align:center;font-size:15.5px;color:rgba(15,26,36,.5);font-weight:300">Todavía no hay publicaciones en esta categoría.</div>
+  </sc-if>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:80px 40px 96px">
+  <div data-r="stack" style="border:1px solid rgba(11,59,102,.15);border-radius:8px;background:#F5F2EC;padding:48px 46px;display:grid;grid-template-columns:1fr auto;gap:52px;align-items:center">
+    <div>
+      <h3 style="font-family:Newsreader,serif;font-weight:300;font-size:32px;line-height:1.15;margin:0 0 12px;color:#0B3B66;text-wrap:pretty">Recibe nuestra carta trimestral</h3>
+      <p style="font-size:16px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300;margin:0;max-width:520px">Análisis de mercados y cambios normativos que afectan tus obligaciones laborales. Cuatro correos al año, sin promociones.</p>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;min-width:400px">
+      <input type="text" placeholder="nombre@empresa.com" style="flex:1;border:1px solid rgba(11,59,102,.22);border-radius:100px;background:#fff;padding:14px 20px;font-size:14.5px;outline:none">
+      <button style="background:#0B3B66;color:#fff;border:0;padding:14px 26px;border-radius:100px;font-size:14.5px;font-weight:500;cursor:pointer;white-space:nowrap" style-hover="background:#1D6FB8">Suscribirme</button>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#08284A;color:rgba(234,242,250,.7);font-size:14px">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:60px 40px 34px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px">
+    <div>
+      <div style="font-family:Newsreader,serif;font-size:26px;letter-spacing:.14em;color:#FBFAF7;margin-bottom:18px">VITALIS</div>
+      <p style="line-height:1.65;font-weight:300;margin:0;max-width:300px">Vitalis® Expertos en Pensiones S.A. de C.V. Miembro de la red internacional de actuarios ABELICA Global.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">México</div>
+      <p style="line-height:1.65;font-weight:300;margin:0">Gobernador Rafael Rebollar 47 y 56, San Miguel Chapultepec, C.P. 11850, CDMX<br>T: 52 (55) 5235 3000</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">Más</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="Vitalis Home.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inicio</a>
+        <a href="Vitalis Inversiones.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inversiones</a>
+        <a href="Vitalis Tecnologia.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Tecnología</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 40px 40px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:24px;font-size:12.5px;color:rgba(234,242,250,.45)">
+    <span>©2026 Todos los derechos reservados · Vitalis</span>
+    <a href="Vitalis En Construccion.dc.html?p=Aviso%20de%20Privacidad" style="color:rgba(234,242,250,.6)">Aviso de Privacidad</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/525541430497" style="position:fixed;right:26px;bottom:26px;z-index:60;background:#0B3B66;color:#fff;padding:14px 22px;border-radius:100px;font-size:14px;font-weight:500;box-shadow:0 12px 30px rgba(11,59,102,.32)" style-hover="background:#1D6FB8;color:#fff">WhatsApp</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { cat: "Todas" };
+
+  renderVals() {
+    const s = this.state;
+    const azul = "repeating-linear-gradient(135deg,#E7EEF6 0 14px,#F3F7FB 14px 28px)";
+    const arena = "repeating-linear-gradient(135deg,#EDEAE2 0 14px,#F7F5F0 14px 28px)";
+    // mismas publicaciones que administra el panel en Medios y blog
+    const data = [
+      { titulo: "Qué cambia en la NIF D-3 para el cierre 2026", cat: "Actuaría", fecha: "12 ago 2026", autor: "Alejandra Lozano", lectura: "6 min",
+        extracto: "Las remediciones y el tratamiento de la tasa de descuento cambian el costo neto que reconocerás este ejercicio. Qué revisar antes de septiembre.", tint: azul, destacado: true },
+      { titulo: "Tasa de reemplazo: por qué el 30% no alcanza", cat: "Pensiones", fecha: "28 jul 2026", autor: "Mauricio Cervantes", lectura: "5 min",
+        extracto: "La seguridad social rara vez sostiene el nivel de vida del último salario. Cómo se construye el resto con los otros dos pilares.", tint: arena },
+      { titulo: "Carta trimestral de inversiones · 2T 2026", cat: "Inversiones", fecha: "15 jul 2026", autor: "Comité de inversión", lectura: "8 min",
+        extracto: "Duración, exposición a divisas y las decisiones tácticas del trimestre en nuestras estrategias de deuda y renta variable.", tint: azul },
+      { titulo: "Cinco preguntas que tu comité debería hacer cada año", cat: "Inversiones", fecha: "02 jul 2026", autor: "Rodrigo Silva", lectura: "4 min",
+        extracto: "Comisiones, benchmark, duración frente a la exigibilidad del pasivo y calidad de la información. Un guion corto para la sesión.", tint: arena },
+      { titulo: "Vitalis en el Foro de Inversión Previsional 2026", cat: "Prensa", fecha: "18 jun 2026", autor: "Comunicación", lectura: "3 min",
+        extracto: "Participamos en el panel sobre integración de criterios ESG en portafolios de fondos de pensiones mexicanos.", tint: azul },
+      { titulo: "Millas para el Retiro cumple cinco años", cat: "Prensa", fecha: "30 may 2026", autor: "Comunicación", lectura: "3 min",
+        extracto: "El primer sistema de ahorro para el retiro a través del gasto, y lo que aprendimos de sus primeros usuarios.", tint: arena }
+    ];
+    const shown = data.filter(p => s.cat === "Todas" || p.cat === s.cat);
+    const dest = s.cat === "Todas" ? shown[0] : null;
+    const rest = dest ? shown.slice(1) : shown;
+
+    return {
+      filtros: ["Todas", "Actuaría", "Pensiones", "Inversiones", "Prensa"].map(label => ({
+        label,
+        bg: s.cat === label ? "#0B3B66" : "transparent",
+        fg: s.cat === label ? "#FBFAF7" : "rgba(15,26,36,.62)",
+        border: s.cat === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ cat: label })
+      })),
+      hasDestacado: !!dest,
+      destacado: dest || data[0],
+      posts: rest,
+      vacio: shown.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400;1,300&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#0F1A24;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0B3B66;text-decoration:none}
+a:hover{color:#1D6FB8}
+@media (max-width:1000px){
+  [data-r="hair"]{grid-template-columns:1fr !important;gap:1px !important}
+}
+@media (max-width:640px){
+  [data-r="hair"]{gap:1px !important}
+}
+
+@media (max-width:1000px){
+  [data-r="badge"]{left:18px !important;bottom:18px !important}
+}
+@media (max-width:640px){
+  [data-r="badge"]{position:static !important;margin-top:14px !important}
+  [data-r="xaxis"] > div:nth-child(even){display:none !important}
+}
+@media (max-width:460px){
+  [data-r="xaxis"] > div:nth-child(4n+2), [data-r="xaxis"] > div:nth-child(4n+3), [data-r="xaxis"] > div:nth-child(4n+4){display:none !important}
+}
+
+@media (max-width:1000px){
+  [data-r="stack"]{grid-template-columns:1fr !important;gap:34px !important}
+  [data-r="stack"] > *{grid-column:auto !important}
+  [data-r="tablebox"]{overflow-x:auto !important}
+  [data-r="trow"]{min-width:680px}
+  [data-r="side"]{height:auto !important;position:static !important;border-right:0 !important;border-bottom:1px solid rgba(11,59,102,.12) !important}
+  [data-r="side"] nav{display:flex !important;flex-wrap:wrap !important;overflow:visible !important}
+  [data-r="side"] nav > div{margin-bottom:10px !important}
+  header > div{height:auto !important;flex-wrap:wrap !important;padding-top:14px !important;padding-bottom:14px !important;gap:14px !important}
+  header nav{order:3 !important;width:100% !important;overflow-x:auto !important;gap:22px !important;padding-bottom:4px !important;-webkit-overflow-scrolling:touch}
+  header nav > a, header nav > div{flex:none !important;white-space:nowrap !important}
+  section, article{padding-left:26px !important;padding-right:26px !important}
+  footer > div{padding-left:26px !important;padding-right:26px !important}
+  [style*="position:sticky"][style*="top:110px"], [style*="position:sticky"][style*="top:88px"]{position:static !important}
+  h1{font-size:44px !important;line-height:1.08 !important}
+  h2{font-size:34px !important;line-height:1.14 !important}
+  h3{font-size:27px !important}
+  [style*="min-width:400px"]{min-width:0 !important}
+  [style*="min-width:260px"]{min-width:0 !important}
+}
+@media (max-width:640px){
+  section, article{padding-left:20px !important;padding-right:20px !important;padding-top:44px !important}
+  footer > div{padding-left:20px !important;padding-right:20px !important}
+  h1{font-size:36px !important}
+  h2{font-size:28px !important}
+  h3{font-size:23px !important}
+  [data-r="stack"]{gap:26px !important}
+  [data-r="lead"]{font-size:16px !important;line-height:1.6 !important}
+  [style*="height:420px"]{height:220px !important}
+  [style*="min-height:340px"]{min-height:200px !important}
+}
+
+input,textarea,select,button{font-family:inherit;color:inherit}
+input:focus,textarea:focus{outline:none;border-color:#1D6FB8}
+</style>
+</helmet>
+
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ false }}">
+<div data-r="stack" style="min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr">
+  <div style="display:flex;align-items:center;justify-content:center;padding:60px">
+    <div style="width:100%;max-width:380px">
+      <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:46px">
+        <span style="font-family:Newsreader,serif;font-size:27px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+        <span style="width:6px;height:6px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:14px">vitalis.com.mx/panel</div>
+      <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;line-height:1.1;margin:0 0 34px;color:#0B3B66">Panel de contenido</h1>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <label style="display:flex;flex-direction:column;gap:9px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.5)">Correo</span>
+          <input type="text" value="admin@vitalis.com.mx" style="border:1px solid rgba(11,59,102,.22);border-radius:5px;background:#fff;padding:13px 14px;font-size:15px">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:9px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.5)">Contraseña</span>
+          <input type="password" value="............" style="border:1px solid rgba(11,59,102,.22);border-radius:5px;background:#fff;padding:13px 14px;font-size:15px">
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(15,26,36,.7);font-weight:300;cursor:pointer">
+          <input type="checkbox" checked="{{ true }}" style="accent-color:#0B3B66;width:16px;height:16px">Mantener la sesión iniciada 30 días
+        </label>
+        <button onClick="{{ doLogin }}" style="background:#0B3B66;color:#fff;border:0;padding:15px;border-radius:100px;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Entrar</button>
+        <a href="#" style="font-size:13.5px;color:rgba(15,26,36,.55);text-align:center">¿Olvidaste tu contraseña?</a>
+      </div>
+      <div style="margin-top:54px;padding-top:20px;border-top:1px solid rgba(11,59,102,.13);font-size:12.5px;color:rgba(15,26,36,.45);font-weight:300;line-height:1.6">Acceso restringido al equipo de Vitalis. El portal de clientes está en <a href="Vitalis Usuarios.dc.html">vitalis.com.mx/usuarios</a>.</div>
+    </div>
+  </div>
+  <div style="background:#0B3B66;display:flex;align-items:flex-end;padding:56px">
+    <div style="color:#EAF2FA">
+      <div style="width:100%;height:200px;border-radius:4px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 12px,rgba(255,255,255,.03) 12px 24px);margin-bottom:34px;display:flex;align-items:flex-end;padding:20px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(234,242,250,.45)">imagen editorial · opcional</span>
+      </div>
+      <div style="font-family:Newsreader,serif;font-size:30px;font-weight:300;line-height:1.25;font-style:italic;max-width:420px">Creamos valor en el tiempo para un futuro próspero</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+<div data-r="stack" style="min-height:100vh;display:grid;grid-template-columns:236px 1fr">
+
+  <aside data-r="side" style="border-right:1px solid rgba(11,59,102,.12);background:#F5F2EC;display:flex;flex-direction:column;position:sticky;top:0;height:100vh">
+    <div style="padding:22px 22px 26px;display:flex;align-items:baseline;gap:8px">
+      <span style="font-family:Newsreader,serif;font-size:21px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+    </div>
+    <nav style="flex:1;overflow-y:auto;padding-bottom:20px">
+      <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+        <div style="margin-bottom:22px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,26,36,.38);padding:0 22px 9px">{{ g.title }}</div>
+          <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+            <button onClick="{{ it.go }}" style="width:100%;text-align:left;border:0;border-left:2px solid {{ it.bar }};background:{{ it.bg }};color:{{ it.fg }};padding:9px 22px;font-size:14px;font-weight:{{ it.weight }};cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+              {{ it.label }}
+              <sc-if value="{{ it.badge }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10px;background:#1D6FB8;color:#fff;border-radius:100px;padding:2px 7px">{{ it.badge }}</span>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </sc-for>
+    </nav>
+    <button onClick="{{ doLogout }}" style="border:0;border-top:1px solid rgba(11,59,102,.12);background:transparent;text-align:left;padding:16px 22px;font-size:13.5px;color:rgba(15,26,36,.55);cursor:pointer">Cerrar sesión</button>
+  </aside>
+
+  <main style="min-width:0;display:flex;flex-direction:column">
+    <header style="position:sticky;top:0;z-index:20;background:rgba(251,250,247,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(11,59,102,.12)">
+      <div style="padding:0 36px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+        <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:rgba(15,26,36,.5)">
+          <span>Panel</span><span style="opacity:.4">/</span><span style="color:#0F1A24">{{ crumb }}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:22px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.4)">Idioma</span>
+            <div style="display:flex;gap:3px;background:rgba(11,59,102,.06);border-radius:100px;padding:3px">
+              <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+                <button onClick="{{ l.pick }}" style="border:0;background:{{ l.bg }};color:{{ l.fg }};font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;cursor:pointer">{{ l.code }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:32px;height:32px;border-radius:50%;background:#0B3B66;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">A</div>
+            <div style="line-height:1.3">
+              <div style="font-size:13px">admin@vitalis.com.mx</div>
+              <div style="font-size:11.5px;color:rgba(15,26,36,.45)">Administrador</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <sc-if value="{{ isDash }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:64px 36px 80px;max-width:1120px">
+        <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;margin:0 0 8px;color:#0B3B66">Panel de contenido</h1>
+        <p style="font-size:16px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 48px">Elige qué quieres editar.</p>
+        <sc-for list="{{ dashGroups }}" as="g" hint-placeholder-count="3">
+          <div style="margin-bottom:44px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,26,36,.4);margin-bottom:16px">{{ g.title }}</div>
+            <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+              <sc-for list="{{ g.cards }}" as="c" hint-placeholder-count="3">
+                <button onClick="{{ c.go }}" style="text-align:left;border:1px solid rgba(11,59,102,.15);border-left:3px solid #1D6FB8;background:#fff;border-radius:6px;padding:22px 24px;cursor:pointer;display:flex;flex-direction:column;gap:7px;min-height:104px" style-hover="background:#F4F8FC;border-color:rgba(29,111,184,.45);border-left-color:#0B3B66">
+                  <span style="font-size:16px;font-weight:500;color:#0B3B66">{{ c.title }}</span>
+                  <span style="font-size:13.5px;line-height:1.5;color:rgba(15,26,36,.55);font-weight:300">{{ c.body }}</span>
+                  <sc-if value="{{ c.meta }}" hint-placeholder-val="{{ false }}">
+                    <span style="margin-top:auto;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(15,26,36,.38)">{{ c.meta }}</span>
+                  </sc-if>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPages }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:52px 36px 80px;max-width:1120px">
+        <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0 0 8px;color:#0B3B66">Páginas</h1>
+        <p style="font-size:15.5px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 36px">Marca una página como “En construcción” para mostrar el aviso en el sitio mientras la terminamos.</p>
+        <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;overflow:hidden;background:#fff">
+          <div data-r="trow" style="display:grid;grid-template-columns:2fr 1.4fr 1fr 100px;gap:16px;padding:13px 22px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+            <span>Página</span><span>URL</span><span>Estado</span><span></span>
+          </div>
+          <sc-for list="{{ pages }}" as="p" hint-placeholder-count="8">
+            <div data-r="trow" style="display:grid;grid-template-columns:2fr 1.4fr 1fr 100px;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(11,59,102,.08);align-items:center;font-size:14.5px">
+              <span style="font-weight:500;color:#0B3B66">{{ p.name }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.5)">{{ p.url }}</span>
+              <button onClick="{{ p.toggle }}" style="justify-self:start;border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }};font-size:12.5px;padding:5px 13px;border-radius:100px;cursor:pointer">{{ p.status }}</button>
+              <button onClick="{{ p.edit }}" style="justify-self:end;border:1px solid rgba(11,59,102,.2);background:transparent;font-size:13px;padding:6px 14px;border-radius:100px;cursor:pointer;color:#0B3B66" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Editar</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="padding:34px 36px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:30px">
+          <div>
+            <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0 0 10px;color:#0B3B66">{{ pageName }}</h1>
+            <div style="display:flex;align-items:center;gap:12px;font-size:12.5px;color:rgba(15,26,36,.5)">
+              <span style="display:inline-flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:50%;background:{{ pageDot }};display:inline-block"></span>{{ pageEstado }}</span>
+              <span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace">{{ pageUrl }}</span>
+              <span style="opacity:.4">·</span><span>{{ savedNote }}</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <a href="{{ previewHref }}" style="border:1px solid rgba(11,59,102,.2);padding:10px 18px;border-radius:100px;font-size:13.5px" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Vista previa</a>
+            <button onClick="{{ save }}" style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Guardar</button>
+          </div>
+        </div>
+
+        <div style="padding:0 36px;border-bottom:1px solid rgba(11,59,102,.12);margin-top:26px;display:flex;gap:26px;overflow-x:auto">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="9">
+            <button onClick="{{ t.pick }}" style="border:0;background:transparent;padding:14px 0;font-size:14.5px;color:{{ t.fg }};border-bottom:2px solid {{ t.bar }};cursor:pointer;white-space:nowrap;font-weight:{{ t.weight }}">{{ t.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding:44px 36px 90px;max-width:980px">
+          <sc-for list="{{ groups }}" as="grp" hint-placeholder-count="2">
+            <div style="margin-bottom:52px">
+              <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:26px;margin:0 0 6px;color:#0B3B66">{{ grp.title }}</h2>
+              <sc-if value="{{ grp.help }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:13.5px;color:rgba(15,26,36,.5);font-weight:300;margin:0 0 26px;max-width:640px">{{ grp.help }}</p>
+              </sc-if>
+
+              <sc-for list="{{ grp.fields }}" as="f" hint-placeholder-count="3">
+                <div style="margin-bottom:24px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px">
+                    <span style="font-size:13px;color:rgba(15,26,36,.65)">{{ f.label }}<span style="color:#B4483C"> {{ f.req }}</span></span>
+                    <sc-if value="{{ f.counter }}" hint-placeholder-val="{{ false }}">
+                      <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(15,26,36,.4)">{{ f.counter }}</span>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}">
+                    <input type="text" value="{{ f.value }}" onChange="{{ f.onChange }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:12px 14px;font-size:15px">
+                  </sc-if>
+                  <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}">
+                    <textarea rows="3" onChange="{{ f.onChange }}" value="{{ f.value }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:12px 14px;font-size:15px;line-height:1.55;resize:vertical"></textarea>
+                  </sc-if>
+                  <sc-if value="{{ f.isNum }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;align-items:center;gap:12px">
+                      <input type="text" value="{{ f.value }}" onChange="{{ f.onChange }}" style="width:120px;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:12px 14px;font-size:15px">
+                      <span style="font-size:13.5px;color:rgba(15,26,36,.5);font-weight:300">{{ f.unit }}</span>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ f.isImage }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;align-items:center;gap:16px;border:1px solid rgba(11,59,102,.16);border-radius:5px;background:#F5F2EC;padding:12px 14px">
+                      <div style="width:48px;height:48px;border-radius:3px;flex:none;background:repeating-linear-gradient(135deg,#E7EEF6 0 8px,#F3F7FB 8px 16px)"></div>
+                      <div style="flex:1;min-width:0">
+                        <div style="font-size:14px;color:#1D6FB8">{{ f.fileName }}</div>
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(15,26,36,.45);margin-top:3px">{{ f.fileMeta }}</div>
+                      </div>
+                      <span style="font-size:12.5px;color:rgba(15,26,36,.4)">Recomendado {{ f.rec }}</span>
+                      <button style="border:0;background:transparent;font-size:17px;color:rgba(15,26,36,.4);cursor:pointer;padding:0 4px">×</button>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ f.isToggle }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ f.onChange }}" style="display:inline-flex;align-items:center;gap:10px;border:1px solid {{ f.tBorder }};background:{{ f.tBg }};color:{{ f.tFg }};padding:9px 16px;border-radius:100px;font-size:13.5px;cursor:pointer">
+                      <span style="width:9px;height:9px;border-radius:50%;background:{{ f.tDot }};display:inline-block"></span>{{ f.tLabel }}
+                    </button>
+                  </sc-if>
+                  <sc-if value="{{ f.isLink }}" hint-placeholder-val="{{ false }}">
+                    <button onClick="{{ f.onChange }}" style="border:1px solid rgba(11,59,102,.2);background:#fff;padding:11px 18px;border-radius:5px;font-size:14px;color:#0B3B66;cursor:pointer" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.06)">{{ f.value }}</button>
+                  </sc-if>
+                  <sc-if value="{{ f.help }}" hint-placeholder-val="{{ false }}">
+                    <div style="font-size:12.5px;color:rgba(15,26,36,.45);font-weight:300;margin-top:7px">{{ f.help }}</div>
+                  </sc-if>
+                </div>
+              </sc-for>
+
+              <sc-if value="{{ grp.hasRepeater }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:30px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:12px">
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">{{ grp.repTitle }}</span>
+                    <button onClick="{{ grp.collapseAll }}" style="border:0;background:transparent;font-size:12.5px;color:rgba(15,26,36,.5);cursor:pointer">Contraer todo</button>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <sc-for list="{{ grp.rows }}" as="row" hint-placeholder-count="4">
+                      <div style="border:1px solid rgba(11,59,102,.15);border-radius:5px;background:#fff;overflow:hidden">
+                        <button onClick="{{ row.toggle }}" style="width:100%;display:flex;align-items:center;gap:12px;border:0;background:#F5F2EC;padding:12px 14px;cursor:pointer;text-align:left">
+                          <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(15,26,36,.35)">⠿</span>
+                          <span style="flex:1;font-size:14.5px;color:#0B3B66">{{ row.title }}</span>
+                          <span style="font-size:12.5px;color:rgba(15,26,36,.4)">···</span>
+                          <span style="font-size:12px;color:rgba(15,26,36,.45)">{{ row.chev }}</span>
+                        </button>
+                        <sc-if value="{{ row.open }}" hint-placeholder-val="{{ false }}">
+                          <div data-r="stack" style="padding:20px 18px;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                            <sc-for list="{{ row.fields }}" as="rf" hint-placeholder-count="2">
+                              <div style="grid-column:{{ rf.span }}">
+                                <div style="font-size:12.5px;color:rgba(15,26,36,.6);margin-bottom:7px">{{ rf.label }}</div>
+                                <input type="text" value="{{ rf.value }}" onChange="{{ rf.onChange }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:11px 13px;font-size:14.5px">
+                              </div>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <button onClick="{{ grp.addRow }}" style="margin-top:12px;border:1px dashed rgba(11,59,102,.28);background:transparent;padding:11px 18px;border-radius:5px;font-size:13.5px;color:#0B3B66;cursor:pointer;width:100%" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.05)">+ Agregar elemento</button>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSeries }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:1120px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:10px">
+          <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0;color:#0B3B66">Series de rendimientos</h1>
+          <div style="display:flex;gap:10px">
+            <button style="border:1px solid rgba(11,59,102,.2);background:transparent;padding:10px 18px;border-radius:100px;font-size:13.5px;color:#0B3B66;cursor:pointer" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Importar CSV</button>
+            <button onClick="{{ save }}" style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Guardar</button>
+          </div>
+        </div>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 32px;max-width:620px">Alimenta la gráfica de la home. Puedes pegar dos columnas desde Excel directamente sobre la tabla.</p>
+
+        <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start">
+          <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;background:#fff;overflow:hidden">
+            <div data-r="trow" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:12px 18px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+              <span>Año</span><span>Deuda</span><span>Renta variable</span>
+            </div>
+            <div style="max-height:420px;overflow-y:auto">
+              <sc-for list="{{ seriesRows }}" as="r" hint-placeholder-count="10">
+                <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:7px 18px;border-bottom:1px solid rgba(11,59,102,.07);align-items:center">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(15,26,36,.6)">{{ r.year }}</span>
+                  <input type="text" value="{{ r.d }}" onChange="{{ r.onD }}" style="width:100%;border:1px solid rgba(11,59,102,.14);border-radius:4px;padding:7px 9px;font-size:13.5px;background:#fff">
+                  <input type="text" value="{{ r.rv }}" onChange="{{ r.onRv }}" style="width:100%;border:1px solid rgba(11,59,102,.14);border-radius:4px;padding:7px 9px;font-size:13.5px;background:#fff">
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="border:1px solid rgba(11,59,102,.14);border-radius:6px;background:#fff;padding:22px;position:sticky;top:88px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45);margin-bottom:16px">Vista previa en vivo</div>
+            <svg viewBox="0 0 460 240" style="width:100%;height:auto;display:block">
+              <sc-for list="{{ pvGrid }}" as="g" hint-placeholder-count="6">
+                <line x1="0" y1="{{ g.y }}" x2="460" y2="{{ g.y }}" stroke="rgba(11,59,102,.10)" stroke-width="1"></line>
+              </sc-for>
+              <path d="{{ pvTotal }}" fill="rgba(11,59,102,.16)"></path>
+              <path d="{{ pvDeuda }}" fill="rgba(29,111,184,.75)"></path>
+            </svg>
+            <div style="display:flex;gap:18px;margin-top:16px;font-size:12.5px;color:rgba(15,26,36,.55)">
+              <span style="display:inline-flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:2px;background:#1D6FB8;display:inline-block"></span>Vitalis Deuda</span>
+              <span style="display:inline-flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:2px;background:rgba(11,59,102,.35);display:inline-block"></span>Vitalis Renta Variable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLeads }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:1180px">
+        <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0 0 8px;color:#0B3B66">Solicitudes</h1>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 28px">Formularios de cotización y diagnósticos agendados desde el sitio.</p>
+        <div style="display:flex;gap:9px;margin-bottom:20px">
+          <sc-for list="{{ leadFilters }}" as="lf" hint-placeholder-count="3">
+            <button onClick="{{ lf.pick }}" style="border:1px solid {{ lf.border }};background:{{ lf.bg }};color:{{ lf.fg }};padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer">{{ lf.label }}</button>
+          </sc-for>
+        </div>
+        <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;overflow:hidden;background:#fff">
+          <div data-r="trow" style="display:grid;grid-template-columns:1.4fr 1.2fr .8fr 1fr .9fr;gap:14px;padding:13px 20px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+            <span>Empresa</span><span>Contacto</span><span>Empleados</span><span>Origen</span><span>Fecha</span>
+          </div>
+          <sc-for list="{{ leads }}" as="l" hint-placeholder-count="6">
+            <div data-r="trow" style="display:grid;grid-template-columns:1.4fr 1.2fr .8fr 1fr .9fr;gap:14px;padding:15px 20px;border-bottom:1px solid rgba(11,59,102,.07);align-items:center;font-size:14px">
+              <span style="font-weight:500;color:#0B3B66">{{ l.empresa }}</span>
+              <span style="color:rgba(15,26,36,.7);font-weight:300">{{ l.contacto }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(15,26,36,.55)">{{ l.empleados }}</span>
+              <span style="font-size:12.5px;color:rgba(15,26,36,.55)">{{ l.origen }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.45)">{{ l.fecha }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isUsuarios }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:1080px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:8px">
+          <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0;color:#0B3B66">Usuarios</h1>
+          <button style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Invitar usuario</button>
+        </div>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 32px;max-width:620px">Quién puede entrar al panel y qué puede hacer. El rol se cambia desde aquí y aplica al instante.</p>
+        <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;overflow:hidden;background:#fff">
+          <div data-r="trow" style="display:grid;grid-template-columns:1.5fr 1.1fr 1fr .9fr;gap:16px;padding:13px 22px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+            <span>Usuario</span><span>Rol</span><span>Último acceso</span><span></span>
+          </div>
+          <sc-for list="{{ usuariosRows }}" as="u" hint-placeholder-count="4">
+            <div data-r="trow" style="display:grid;grid-template-columns:1.5fr 1.1fr 1fr .9fr;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(11,59,102,.08);align-items:center;font-size:14.5px">
+              <div style="display:flex;align-items:center;gap:12px;min-width:0">
+                <span style="width:30px;height:30px;border-radius:50%;background:rgba(11,59,102,.10);color:#0B3B66;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:500;flex:none">{{ u.ini }}</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ u.correo }}</span>
+              </div>
+              <span style="display:inline-flex;align-self:start;font-size:12.5px;border:1px solid rgba(11,59,102,.2);border-radius:100px;padding:5px 13px;color:#0B3B66">{{ u.rol }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.45)">{{ u.acceso }}</span>
+              <button style="justify-self:end;border:1px solid rgba(11,59,102,.18);background:transparent;font-size:13px;padding:6px 14px;border-radius:100px;cursor:pointer;color:#0B3B66" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Editar</button>
+            </div>
+          </sc-for>
+        </div>
+        <div data-r="stack" style="margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          <sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+            <div style="border:1px solid rgba(11,59,102,.14);border-radius:6px;padding:24px 26px;background:#F5F2EC">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#1D6FB8;margin-bottom:10px">{{ r.rol }}</div>
+              <p style="margin:0;font-size:14px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300">{{ r.puede }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isArchivos }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:1120px">
+        <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0 0 8px;color:#0B3B66">Archivos</h1>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 28px">Imágenes y documentos que usan las páginas del sitio.</p>
+        <div style="border:1px dashed rgba(11,59,102,.28);border-radius:6px;padding:34px;text-align:center;margin-bottom:28px;background:#F5F2EC">
+          <div style="font-size:15.5px;color:#0B3B66;margin-bottom:6px">Arrastra archivos aquí</div>
+          <div style="font-size:13px;color:rgba(15,26,36,.5);font-weight:300">JPG, PNG, SVG o PDF · hasta 10 MB por archivo</div>
+        </div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px;align-items:center">
+          <sc-for list="{{ archFiltros }}" as="f" hint-placeholder-count="3">
+            <button onClick="{{ f.pick }}" style="border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer">{{ f.label }}</button>
+          </sc-for>
+          <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45)">{{ archConteo }}</span>
+        </div>
+        <div data-r="stack" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <sc-for list="{{ archivos }}" as="a" hint-placeholder-count="8">
+            <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;overflow:hidden;background:#fff">
+              <div style="height:110px;background:{{ a.tint }};display:flex;align-items:flex-end;padding:10px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;background:#fff;border-radius:3px;padding:2px 6px;color:#1D6FB8">{{ a.tipo }}</span>
+              </div>
+              <div style="padding:12px 14px 14px">
+                <div style="font-size:13px;color:#0B3B66;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ a.nombre }}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(15,26,36,.42);margin-top:5px">{{ a.meta }}</div>
+                <div style="font-size:11.5px;color:rgba(15,26,36,.45);margin-top:7px;font-weight:300">{{ a.usada }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDatos }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:900px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:8px">
+          <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0;color:#0B3B66">Datos globales</h1>
+          <button onClick="{{ save }}" style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Guardar</button>
+        </div>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 40px;max-width:600px">Se repiten en todas las páginas: barra superior, pie de página y botones de contacto. Cambiarlos aquí los cambia en todo el sitio.</p>
+        <sc-for list="{{ datosGrupos }}" as="g" hint-placeholder-count="3">
+          <div style="margin-bottom:44px">
+            <h2 style="font-family:Newsreader,serif;font-weight:400;font-size:24px;margin:0 0 20px;color:#0B3B66">{{ g.title }}</h2>
+            <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+              <sc-for list="{{ g.fields }}" as="f" hint-placeholder-count="2">
+                <label style="display:flex;flex-direction:column;gap:8px;grid-column:{{ f.span }}">
+                  <span style="font-size:13px;color:rgba(15,26,36,.6)">{{ f.label }}</span>
+                  <input type="text" value="{{ f.value }}" onChange="{{ f.onChange }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:12px 14px;font-size:15px">
+                </label>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isMedios }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:44px 36px 90px;max-width:1080px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:8px">
+          <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:40px;margin:0;color:#0B3B66">Blog</h1>
+          <div style="display:flex;gap:10px">
+            <a href="Vitalis Blog.dc.html" style="border:1px solid rgba(11,59,102,.2);padding:10px 18px;border-radius:100px;font-size:13.5px" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Ver el blog</a>
+            <button onClick="{{ nuevoPost }}" style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Nueva publicación</button>
+          </div>
+        </div>
+        <p style="font-size:15px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 28px">Artículos y notas de prensa que salen en <span style="font-family:'JetBrains Mono',monospace;font-size:13px">/blog</span>. Los borradores no aparecen en el sitio.</p>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px">
+          <sc-for list="{{ postFiltros }}" as="f" hint-placeholder-count="3">
+            <button onClick="{{ f.pick }}" style="border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};padding:8px 16px;border-radius:100px;font-size:13px;cursor:pointer">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.14);border-radius:6px;overflow:hidden;background:#fff">
+          <div data-r="trow" style="display:grid;grid-template-columns:2.2fr 1fr .8fr .8fr auto;gap:16px;padding:13px 22px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+            <span>Título</span><span>Categoría</span><span>Estado</span><span>Fecha</span><span></span>
+          </div>
+          <sc-for list="{{ posts }}" as="p" hint-placeholder-count="5">
+            <div data-r="trow" style="display:grid;grid-template-columns:2.2fr 1fr .8fr .8fr auto;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(11,59,102,.08);align-items:center;font-size:14.5px">
+              <span style="color:#0B3B66;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.titulo }}</span>
+              <span style="font-size:13px;color:rgba(15,26,36,.55)">{{ p.cat }}</span>
+              <span style="justify-self:start;font-size:12.5px;border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }};border-radius:100px;padding:4px 12px">{{ p.estado }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.45)">{{ p.fecha }}</span>
+              <button onClick="{{ p.edit }}" style="border:1px solid rgba(11,59,102,.18);background:transparent;font-size:13px;padding:6px 14px;border-radius:100px;cursor:pointer;color:#0B3B66" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Editar</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:38px 36px 90px;max-width:1080px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:30px;margin-bottom:30px">
+          <div>
+            <button onClick="{{ backToPosts }}" style="border:0;background:transparent;padding:0;font-size:13px;color:rgba(15,26,36,.5);cursor:pointer;margin-bottom:12px">← Blog</button>
+            <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:36px;margin:0 0 10px;color:#0B3B66">{{ postTitulo }}</h1>
+            <div style="display:flex;align-items:center;gap:12px;font-size:12.5px;color:rgba(15,26,36,.5)">
+              <span style="display:inline-flex;align-items:center;gap:7px"><span style="width:7px;height:7px;border-radius:50%;background:{{ postDot }};display:inline-block"></span>{{ postEstado }}</span>
+              <span style="opacity:.4">·</span><span style="font-family:'JetBrains Mono',monospace">{{ postSlug }}</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <a href="Vitalis Articulo.dc.html" style="border:1px solid rgba(11,59,102,.2);padding:10px 18px;border-radius:100px;font-size:13.5px" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">Vista previa</a>
+            <button onClick="{{ togglePost }}" style="border:1px solid rgba(11,59,102,.2);background:transparent;padding:10px 18px;border-radius:100px;font-size:13.5px;color:#0B3B66;cursor:pointer" style-hover="border-color:#1D6FB8;background:rgba(29,111,184,.07)">{{ postAccion }}</button>
+            <button onClick="{{ save }}" style="background:#0B3B66;color:#fff;border:0;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Guardar</button>
+          </div>
+        </div>
+
+        <div data-r="stack" style="display:grid;grid-template-columns:1.6fr .9fr;gap:34px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:24px">
+            <sc-for list="{{ postCampos }}" as="f" hint-placeholder-count="4">
+              <div>
+                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px">
+                  <span style="font-size:13px;color:rgba(15,26,36,.65)">{{ f.label }}</span>
+                  <sc-if value="{{ f.counter }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(15,26,36,.4)">{{ f.counter }}</span>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}">
+                  <textarea rows="{{ f.rows }}" value="{{ f.value }}" onChange="{{ f.onChange }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:13px 15px;font-size:15px;line-height:1.6;resize:vertical"></textarea>
+                </sc-if>
+                <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}">
+                  <input type="text" value="{{ f.value }}" onChange="{{ f.onChange }}" style="width:100%;border:1px solid rgba(11,59,102,.2);border-radius:5px;background:#fff;padding:12px 15px;font-size:15px">
+                </sc-if>
+                <sc-if value="{{ f.help }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:12.5px;color:rgba(15,26,36,.45);font-weight:300;margin-top:7px">{{ f.help }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px;position:sticky;top:88px">
+            <div style="border:1px solid rgba(11,59,102,.15);border-radius:6px;background:#F5F2EC;padding:22px 24px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45);margin-bottom:16px">Publicación</div>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <div>
+                  <div style="font-size:12.5px;color:rgba(15,26,36,.6);margin-bottom:9px">Categoría</div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <sc-for list="{{ postCats }}" as="c" hint-placeholder-count="4">
+                      <button onClick="{{ c.pick }}" style="border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};padding:6px 13px;border-radius:100px;font-size:12.5px;cursor:pointer">{{ c.label }}</button>
+                    </sc-for>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:12.5px;color:rgba(15,26,36,.6);margin-bottom:9px">Destacado en la portada del blog</div>
+                  <button onClick="{{ toggleDest }}" style="display:inline-flex;align-items:center;gap:10px;border:1px solid {{ destBorder }};background:{{ destBg }};color:{{ destFg }};padding:9px 16px;border-radius:100px;font-size:13.5px;cursor:pointer">
+                    <span style="width:9px;height:9px;border-radius:50%;background:{{ destDot }};display:inline-block"></span>{{ destLabel }}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div style="border:1px solid rgba(11,59,102,.15);border-radius:6px;background:#fff;padding:22px 24px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45);margin-bottom:14px">Imagen principal</div>
+              <div style="height:104px;border-radius:4px;background:repeating-linear-gradient(135deg,#E7EEF6 0 10px,#F3F7FB 10px 20px);display:flex;align-items:flex-end;padding:10px;margin-bottom:12px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:rgba(11,59,102,.45)">nif-d3-cierre-2026.jpg</span>
+              </div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(15,26,36,.42)">2000×1000 · 640 KB</div>
+              <div style="font-size:12px;color:rgba(15,26,36,.45);margin-top:8px;font-weight:300">Recomendado 2000×1000 px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    screen: "login", lang: "ES", tab: "Portada", saved: "Guardado hace 2 minutos",
+    open: { "Servicios-0": true }, leadFilter: "Todas",
+    page: "Home", archFiltro: "Todos", postFiltro: "Todas", pv: {},
+    post: {
+      titulo: "Qué cambia en la NIF D-3 para el cierre 2026",
+      slug: "/blog/nif-d3-cierre-2026",
+      extracto: "Las remediciones y el tratamiento de la tasa de descuento cambian el costo neto que reconocerás este ejercicio. Qué revisar antes de septiembre.",
+      cuerpo: "Cada cierre de ejercicio llega con la misma pregunta del área de finanzas: cuánto va a pesar este año el pasivo laboral en el estado de resultados.\n\n## La tasa de descuento manda\n\nLa obligación por beneficios definidos es el valor presente de pagos que ocurrirán dentro de diez, veinte o treinta años.",
+      autor: "Alejandra Lozano", lectura: "6 min",
+      cat: "Actuaría", estado: "Publicada", destacado: true
+    },
+    g: { tel: "52 (55) 5235 3000", whats: "525541430497", correo: "contacto@vitalis.com.mx", cnbv: "30053",
+         mx: "Gobernador Rafael Rebollar 47 y 56, San Miguel Chapultepec, C.P. 11850, CDMX",
+         ca: "4400 Ch. Côte de Liesse, Porte 200, Mont-Royal, Quebec",
+         pt: "Campo Grande 35, 4ºD, 1700-087, Lisboa",
+         linkedin: "linkedin.com/company/vitalis-pensiones", legal: "Vitalis® Expertos en Pensiones S.A. de C.V." },
+    pageStatus: {
+      Home: "Publicada", Inversiones: "Publicada", "Pasivos laborales": "Publicada",
+      "Planes de pensiones": "Publicada", "Tecnología": "Publicada", Usuarios: "Publicada",
+      Graficador: "Publicada", "Expediente digital": "Publicada",
+      Blog: "Publicada", Nosotros: "Publicada", Contacto: "En construcción"
+    },
+    v: {
+      antetitulo: "Pensiones · Pasivos laborales · Inversiones",
+      titulo: "Creamos valor en el tiempo para un futuro próspero",
+      bajada: "Actuarios certificados y gestores de inversión que acompañan a empresas y a sus colaboradores en el diseño, valuación y administración de sus obligaciones de retiro.",
+      cta1: "Agendar diagnóstico", cta2: "Calcular mi ahorro",
+      badgeCifra: "12,177 MDP", badgeTexto: "MDP asesorados",
+      secServicios: "Cuatro prácticas, una sola conversación sobre el futuro",
+      rendTitulo: "Veintiún años de rendimiento acumulado",
+      rendNota: "Cifras ilustrativas. Rendimientos pasados no garantizan resultados futuros.",
+      calcTitulo: "Ahorra, vive y disfruta",
+      calcBajada: "Descubre cuánto necesitas ahorrar cada mes para sostener la pensión que quieres.",
+      edadRetiro: "65", rendReal: "5", aniosPension: "18",
+      cotTitulo: "Valuación de pasivos laborales con cifras anticipadas",
+      cotCorreo: "cotizaciones@vitalis.com.mx",
+      cierreTitulo: "Hablemos de tu obligación laboral",
+      cierreBajada: "Un diagnóstico inicial sin costo con uno de nuestros actuarios certificados.",
+      whats: "525541430497", floating: true, mostrarRend: true
+    },
+    rows: {
+      Cifras: [["34", "años de experiencia auditada"], ["1,800", "razones sociales asesoradas"], ["1°", "asesor mexicano certificado UNPRI"], ["3", "países: México, Canadá y Portugal"]],
+      Servicios: [["Inversiones", "Gestión de activos institucionales con procesos y rendimientos auditados."], ["Pasivos laborales", "Valuaciones actuariales bajo NIF D-3, IFRS y US GAAP."], ["Planes de pensiones", "Diseño, implementación y administración de planes privados."], ["Tecnología", "Calculadora, cotizador y expediente digital para tu comité."]],
+      Presencia: [["Ciudad de México", "Gobernador Rafael Rebollar 47 y 56, San Miguel Chapultepec"], ["Mont-Royal", "4400 Ch. Côte de Liesse, Porte 200, Quebec"], ["Lisboa", "Campo Grande 35, 4ºD, 1700-087"]],
+      Clientes: [["Logo 01", "cliente-01.svg"], ["Logo 02", "cliente-02.svg"], ["Logo 03", "cliente-03.svg"], ["Logo 04", "cliente-04.svg"], ["Logo 05", "cliente-05.svg"], ["Logo 06", "cliente-06.svg"]]
+    },
+    serie: [[2004,1,1],[2005,8,9],[2006,18,29],[2007,25,39],[2008,33,3],[2009,42,31],[2010,50,26],[2011,59,18],[2012,68,20],[2013,72,39],[2014,82,51],[2015,85,62],[2016,93,78],[2017,99,80],[2018,105,59],[2019,118,51],[2020,130,59],[2021,134,82],[2022,138,50],[2023,147,56],[2024,150,75],[2025,157,62]]
+  };
+
+  go(screen, tab) { this.setState(s => ({ screen, tab: tab || s.tab })); }
+  set(k, val) { this.setState(s => ({ v: { ...s.v, [k]: val } })); }
+
+  field(label, key, opts) {
+    const o = opts || {};
+    const val = this.state.v[key];
+    const f = {
+      label, help: o.help || "", req: o.req ? "*" : "", counter: "",
+      isText: false, isArea: false, isNum: false, isImage: false, isToggle: false, isLink: false,
+      value: val, unit: o.unit || "",
+      onChange: e => this.set(key, e && e.target ? e.target.value : !val)
+    };
+    if (o.type === "area") { f.isArea = true; if (o.max) f.counter = String(val || "").length + " / " + o.max; }
+    else if (o.type === "num") f.isNum = true;
+    else if (o.type === "image") { f.isImage = true; f.fileName = o.fileName; f.fileMeta = o.fileMeta; f.rec = o.rec; }
+    else if (o.type === "toggle") {
+      f.isToggle = true;
+      f.tLabel = val ? (o.on || "Visible en el sitio") : (o.off || "Oculto");
+      f.tBg = val ? "rgba(62,142,90,.10)" : "transparent";
+      f.tFg = val ? "#2F6B45" : "rgba(15,26,36,.5)";
+      f.tBorder = val ? "rgba(62,142,90,.4)" : "rgba(11,59,102,.2)";
+      f.tDot = val ? "#3E8E5A" : "rgba(15,26,36,.3)";
+      f.onChange = () => this.set(key, !val);
+    }
+    else if (o.type === "link") { f.isLink = true; f.value = o.text; f.onChange = () => this.go(o.to); }
+    else { f.isText = true; if (o.max) f.counter = String(val || "").length + " / " + o.max; }
+    return f;
+  }
+
+  repeater(name, title, labels) {
+    const rows = (this.state.rows[name] || []).map((r, i) => {
+      const key = name + "-" + i;
+      const open = !!this.state.open[key];
+      return {
+        title: (i + 1 < 10 ? "0" : "") + (i + 1) + " · " + r[0],
+        open, chev: open ? "▴" : "▾",
+        toggle: () => this.setState(s => ({ open: { ...s.open, [key]: !s.open[key] } })),
+        fields: labels.map((lb, j) => ({
+          label: lb, value: r[j], span: j === labels.length - 1 && labels.length === 2 ? "span 1" : "span 1",
+          onChange: e => this.setState(s => {
+            const next = s.rows[name].map(x => x.slice());
+            next[i][j] = e.target.value;
+            return { rows: { ...s.rows, [name]: next } };
+          })
+        }))
+      };
+    });
+    return {
+      hasRepeater: true, repTitle: title, rows,
+      collapseAll: () => this.setState({ open: {} }),
+      addRow: () => this.setState(s => ({ rows: { ...s.rows, [name]: [...s.rows[name], labels.map(() => "")] } }))
+    };
+  }
+
+  // contenido real por página y tab: [clave, etiqueta, valor por defecto, tipo]
+  static content() {
+    return {
+      Inversiones: {
+        Portada: { title: "Encabezado", help: "Primera pantalla de la página de Inversiones.", f: [
+          ["antetitulo", "Antetítulo", "Gestión de inversiones", "text"],
+          ["titulo", "Título", "Generamos rendimientos reales por encima de la inflación", "area"],
+          ["bajada", "Bajada", "Administramos portafolios institucionales de fondos de pensiones, cajas de ahorro y tesorerías corporativas.", "area"],
+          ["stats", "Cifras del encabezado", "34 años · 11 estrategias · CNBV 30053 · UNPRI", "text"]
+        ]},
+        "Filosofía": { title: "Filosofía de inversión", help: "Bloque azul con los principios numerados.", f: [
+          ["titulo", "Título", "Invertir es entender la empresa detrás del precio", "area"],
+          ["bajada", "Bajada", "Manejo activo con horizonte de mediano y largo plazo, y un objetivo total por encima de la inflación.", "area"],
+          ["p1", "Principio 01", "Manejo activo de portafolios con horizonte de mediano y largo plazo.", "area"],
+          ["p2", "Principio 02", "Análisis fundamental constante de las variables macroeconómicas y de cada empresa.", "area"]
+        ]},
+        Ventajas: { title: "Ventajas competitivas", help: "Lista seleccionable de cinco ventajas.", f: [
+          ["titulo", "Título", "Cinco razones por las que un comité de inversión nos elige", "area"],
+          ["v1", "Ventaja 01 · título", "Estrategia personalizada", "text"],
+          ["v1b", "Ventaja 01 · texto", "Entendemos las necesidades, la naturaleza y los riesgos de las obligaciones detrás de los activos de cada cliente.", "area"],
+          ["v2", "Ventaja 02 · título", "Incentivos alineados", "text"]
+        ]},
+        Rendimientos: { title: "Gráfica de rendimientos", help: "", f: [
+          ["mostrar", "Mostrar sección", true, "toggle"],
+          ["titulo", "Título", "Rendimiento acumulado de nuestras estrategias insignia", "area"],
+          ["nota", "Nota al pie", "Cifras ilustrativas. Rendimientos pasados no garantizan resultados futuros.", "area"],
+          ["link", "Datos de la gráfica", "series", "link"]
+        ]},
+        Estrategias: { title: "Estrategias", help: "Once tarjetas filtrables por clase de activo y moneda.", f: [
+          ["titulo", "Título", "Once estrategias en tres monedas", "area"],
+          ["bajada", "Bajada", "Cada estrategia cuenta con su factsheet mensual.", "area"],
+          ["clases", "Filtros de clase", "Deuda, Balanceado, Renta variable", "text"],
+          ["monedas", "Filtros de moneda", "MXN, USD, EUR", "text"]
+        ]},
+        Cierre: { title: "Cierre", help: "", f: [
+          ["titulo", "Título", "Revisemos el portafolio de tu fondo", "area"],
+          ["bajada", "Bajada", "Analizamos tu asignación actual, comisiones y benchmark. Sin costo y sin compromiso.", "area"],
+          ["cta", "Botón principal", "Agendar diagnóstico", "text"]
+        ]}
+      },
+      "Pasivos laborales": {
+        Portada: { title: "Encabezado", help: "", f: [
+          ["antetitulo", "Antetítulo", "Pasivos laborales contingentes", "text"],
+          ["titulo", "Título", "Cuantifica tu deuda laboral antes del cierre fiscal", "area"],
+          ["bajada", "Bajada", "Valuaciones actuariales bajo NIF D-3, IFRS, US GAAP y German GAAP, con información al 30 de septiembre.", "area"],
+          ["aviso", "Aviso de la barra superior", "Valuaciones con cifras al 30 de septiembre", "text"]
+        ]},
+        Conceptos: { title: "Qué cubre el pasivo", help: "Cinco conceptos numerados en el bloque azul.", f: [
+          ["titulo", "Título", "La deuda que se acumula mientras el trabajador presta servicio", "area"],
+          ["c1", "Concepto 01", "Prima de antigüedad", "text"],
+          ["c2", "Concepto 02", "Indemnización legal por terminación", "text"],
+          ["c3", "Concepto 03", "Jubilación o plan de pensiones", "text"]
+        ]},
+        Normas: { title: "Normatividad", help: "Selector de las cuatro normas.", f: [
+          ["titulo", "Título", "Valuamos bajo la norma que te exige tu matriz o tu auditor", "area"],
+          ["n1", "Norma 01", "NIF D-3", "text"],
+          ["n2", "Norma 02", "IFRS · IAS 19", "text"],
+          ["n3", "Norma 03", "US GAAP · ASC 715", "text"],
+          ["n4", "Norma 04", "German GAAP", "text"]
+        ]},
+        Proceso: { title: "Proceso", help: "Cuatro pasos con tiempos.", f: [
+          ["titulo", "Título", "De la base de datos al dictamen en cuatro semanas", "area"],
+          ["p1", "Paso 01", "Alcance y propuesta · Día 1", "text"],
+          ["p2", "Paso 02", "Base de datos · Semana 1", "text"],
+          ["p3", "Paso 03", "Valuación · Semanas 2–3", "text"],
+          ["p4", "Paso 04", "Dictamen y presentación · Semana 4", "text"]
+        ]},
+        Entregables: { title: "Entregables y respaldo", help: "", f: [
+          ["titulo", "Título", "Qué recibes al final", "area"],
+          ["e1", "Entregable 01", "Dictamen actuarial firmado por actuario certificado", "text"],
+          ["e2", "Entregable 02", "Notas de revelación listas para tus estados financieros", "text"],
+          ["respaldo", "Texto de respaldo", "Pertenecemos a ABELICA Global, la red internacional de actuarios.", "area"]
+        ]},
+        Cotizador: { title: "Formulario de cotización", help: "Los envíos quedan guardados en Solicitudes.", f: [
+          ["titulo", "Título", "Solicita tu propuesta", "area"],
+          ["bajada", "Bajada", "Seis datos y te enviamos una propuesta formal en menos de 48 horas hábiles.", "area"],
+          ["correo", "Correo de aviso", "cotizaciones@vitalis.com.mx", "text"],
+          ["link", "Solicitudes recibidas", "leads", "link"]
+        ]}
+      },
+      "Planes de pensiones": {
+        Portada: { title: "Encabezado", help: "", f: [
+          ["antetitulo", "Antetítulo", "Planes de pensiones privados", "text"],
+          ["titulo", "Título", "Un beneficio que retiene talento y ordena tu relevo generacional", "area"],
+          ["bajada", "Bajada", "Mecanismo de ahorro de largo plazo para el justo reemplazo del personal a edad avanzada.", "area"]
+        ]},
+        Pilares: { title: "Modelo de tres pilares", help: "Simulador interactivo del bloque azul.", f: [
+          ["titulo", "Título", "Ninguna pensión digna se sostiene sobre un solo pilar", "area"],
+          ["nota", "Nota al pie", "Internamente le llamamos el modelo capuchino.", "area"],
+          ["gob", "Aporte base del gobierno", "30", "num"],
+          ["factorEmp", "Factor por punto de aportación de empresa", "3.2", "num"],
+          ["factorAho", "Factor por punto de ahorro voluntario", "2.6", "num"]
+        ]},
+        Beneficios: { title: "Beneficios", help: "Dos columnas: empresa y colaborador.", f: [
+          ["titulo", "Título", "Lo que gana la empresa y lo que gana el colaborador", "area"],
+          ["e1", "Empresa · beneficio 01", "Las aportaciones son deducibles de ISR dentro de los límites de ley", "text"],
+          ["c1", "Colaborador · beneficio 01", "Complementa la pensión de la seguridad social", "text"]
+        ]},
+        "Tipos de plan": { title: "Tipos de plan", help: "Selector de las tres estructuras.", f: [
+          ["titulo", "Título", "Tres estructuras posibles. La diferencia está en quién asume el riesgo", "area"],
+          ["t1", "Estructura 01", "Beneficio definido", "text"],
+          ["t2", "Estructura 02", "Contribución definida", "text"],
+          ["t3", "Estructura 03", "Híbrido", "text"]
+        ]},
+        "Implementación": { title: "Implementación", help: "", f: [
+          ["titulo", "Título", "Del diagnóstico al primer depósito", "area"],
+          ["p1", "Paso 01", "Diagnóstico · Semana 1", "text"],
+          ["p2", "Paso 02", "Diseño del plan · Semanas 2–4", "text"],
+          ["p3", "Paso 03", "Constitución · Semanas 5–8", "text"],
+          ["p4", "Paso 04", "Administración · Continuo", "text"]
+        ]}
+      },
+      "Tecnología": {
+        Portada: { title: "Encabezado", help: "", f: [
+          ["titulo", "Título", "La actuaría deja de ser una caja negra", "area"],
+          ["bajada", "Bajada", "Desarrollamos nuestras propias herramientas para que puedas cotizar, calcular y consultar sin esperar un correo.", "area"]
+        ]},
+        Herramientas: { title: "Herramientas", help: "Tarjetas filtrables por público. El estado controla la etiqueta verde o gris.", f: [
+          ["titulo", "Título", "Seis herramientas en operación", "area"],
+          ["h1", "Herramienta 01", "Cotizador · Empresa · En línea", "text"],
+          ["h2", "Herramienta 02", "Calculadora de ahorro · Colaborador · En línea", "text"],
+          ["h3", "Herramienta 03", "Expediente digital · Empresa · Requiere acceso", "text"],
+          ["h4", "Herramienta 04", "Graficador · Comité · En línea", "text"],
+          ["kit", "Enlace del Kit de inversiones", "https://vitalis.com.mx/data/kitv/expv/", "text"]
+        ]},
+        Calculadora: { title: "Calculadora", help: "Supuestos del cálculo que ve el usuario.", f: [
+          ["titulo", "Título", "Pruébala aquí mismo", "area"],
+          ["edad", "Edad de retiro", "65", "num"],
+          ["rend", "Rendimiento real anual", "5", "num"],
+          ["anios", "Años de pensión", "18", "num"]
+        ]},
+        Expediente: { title: "Expediente digital", help: "", f: [
+          ["titulo", "Título", "Tu expediente actuarial, siempre disponible", "area"],
+          ["bajada", "Bajada", "Dictámenes, estados de cuenta y actas del comité con control de versiones y acceso por rol.", "area"],
+          ["carpetas", "Carpetas visibles en la vista previa", "Valuaciones, Estados de cuenta, Comité de inversión", "text"]
+        ]},
+        Cierre: { title: "Cierre", help: "", f: [
+          ["titulo", "Título", "Te damos una demo en vivo", "area"],
+          ["bajada", "Bajada", "Veinte minutos con tu equipo para recorrer el cotizador y el expediente digital.", "area"]
+        ]}
+      },
+      Usuarios: {
+        Portada: { title: "Encabezado", help: "", f: [
+          ["titulo", "Título", "Entra a tu cuenta", "area"],
+          ["bajada", "Bajada", "Elige el tipo de acceso. Si es tu primera vez, tu empresa te envió las credenciales.", "area"],
+          ["soporte", "Correo de soporte", "soporte@vitalis.com.mx", "text"]
+        ]},
+        Accesos: { title: "Tarjetas de acceso", help: "Los dos accesos del sitio.", f: [
+          ["a1", "Acceso 01 · título", "Empleado", "text"],
+          ["a1b", "Acceso 01 · texto", "Consulta el saldo de tu plan, tu proyección de pensión y tus estados de cuenta.", "area"],
+          ["a1u", "Acceso 01 · destino", "/usuarios/empleado", "text"],
+          ["a2", "Acceso 02 · título", "Empresa", "text"],
+          ["a2b", "Acceso 02 · texto", "Entra al expediente digital de tu empresa.", "area"],
+          ["a2u", "Acceso 02 · destino", "/documentos", "text"]
+        ]}
+      },
+      Graficador: {
+        Portada: { title: "Encabezado", help: "", f: [
+          ["titulo", "Título", "Graficador", "text"],
+          ["bajada", "Bajada", "Compara el rendimiento histórico de nuestras estrategias entre sí y contra la inflación.", "area"],
+          ["nota", "Nota al pie", "Cifras ilustrativas para efectos de demostración.", "area"]
+        ]},
+        Series: { title: "Series disponibles", help: "Qué estrategias puede comparar el visitante.", f: [
+          ["s1", "Serie 01", "Deuda Mexicana", "text"],
+          ["s2", "Serie 02", "High Conviction Global Equity", "text"],
+          ["s3", "Serie 03", "Global Balanced Asset Allocation", "text"],
+          ["s4", "Serie 04", "Inflación (INPC)", "text"],
+          ["link", "Datos de las series", "series", "link"]
+        ]}
+      },
+      "Expediente digital": {
+        Carpetas: { title: "Carpetas", help: "Las carpetas que ve el cliente al entrar.", f: [
+          ["c1", "Carpeta 01", "Valuaciones actuariales", "text"],
+          ["c2", "Carpeta 02", "Estados de cuenta", "text"],
+          ["c3", "Carpeta 03", "Comité de inversión", "text"],
+          ["c4", "Carpeta 04", "Plan de pensiones", "text"],
+          ["c5", "Carpeta 05", "Contratos", "text"]
+        ]},
+        Permisos: { title: "Permisos", help: "Qué carpetas ve cada rol del lado del cliente.", f: [
+          ["r1", "Finanzas", "Valuaciones, Estados de cuenta, Contratos", "text"],
+          ["r2", "Recursos Humanos", "Plan de pensiones, Valuaciones", "text"],
+          ["r3", "Comité de inversión", "Comité de inversión, Estados de cuenta", "text"],
+          ["bitacora", "Registrar bitácora de consultas", true, "toggle"]
+        ]}
+      },
+      Nosotros: {
+        Portada: { title: "Encabezado", help: "Página en construcción. Estos campos ya están listos para cuando la diseñemos.", f: [
+          ["titulo", "Título", "", "area"],
+          ["bajada", "Bajada", "", "area"]
+        ]},
+        Cierre: { title: "Cierre", help: "", f: [["titulo", "Título", "", "area"]] }
+      },
+      Contacto: {
+        Portada: { title: "Encabezado", help: "Página en construcción.", f: [
+          ["titulo", "Título", "", "area"],
+          ["correo", "Correo de aviso del formulario", "contacto@vitalis.com.mx", "text"]
+        ]},
+        Cierre: { title: "Cierre", help: "", f: [["titulo", "Título", "", "area"]] }
+      },
+      Blog: {
+        Portada: { title: "Encabezado del blog", help: "Las publicaciones se administran en Blog, no aquí.", f: [
+          ["titulo", "Título", "Publicaciones", "text"],
+          ["bajada", "Bajada", "Lo que escriben nuestros actuarios y gestores sobre normatividad, pensiones y mercados.", "area"],
+          ["cats", "Categorías del filtro", "Actuaría, Pensiones, Inversiones, Prensa", "text"],
+          ["link", "Administrar publicaciones", "medios", "link"]
+        ]},
+        "Suscripción": { title: "Carta trimestral", help: "Bloque de suscripción al pie del listado.", f: [
+          ["titulo", "Título", "Recibe nuestra carta trimestral", "text"],
+          ["bajada", "Bajada", "Análisis de mercados y cambios normativos que afectan tus obligaciones laborales. Cuatro correos al año, sin promociones.", "area"],
+          ["correo", "Correo de aviso de suscripciones", "comunicacion@vitalis.com.mx", "text"],
+          ["mostrar", "Mostrar bloque", true, "toggle"]
+        ]}
+      }
+    };
+  }
+
+  otherPageGroups() {
+    const page = this.state.page, tab = this.state.tab;
+    const def = (Component.content()[page] || {})[tab];
+    if (!def) return [{ title: tab, help: "Sección sin campos definidos todavía.", fields: [], hasRepeater: false, rows: [], repTitle: "" }];
+    return [{
+      title: def.title, help: def.help,
+      hasRepeater: false, rows: [], repTitle: "",
+      fields: def.f.map(row => {
+        const key = page + "|" + tab + "|" + row[0];
+        const stored = this.state.pv[key];
+        const val = stored === undefined ? row[2] : stored;
+        const type = row[3];
+        const set = v => this.setState(st => ({ pv: Object.assign({}, st.pv, { [key]: v }) }));
+        const f = {
+          label: row[1], help: "", req: "", counter: "", value: val, unit: "",
+          isText: false, isArea: false, isNum: false, isImage: false, isToggle: false, isLink: false,
+          onChange: e => set(e && e.target ? e.target.value : !val)
+        };
+        if (type === "area") { f.isArea = true; f.counter = String(val || "").length + " caracteres"; }
+        else if (type === "num") { f.isNum = true; f.unit = "valor numérico"; }
+        else if (type === "toggle") {
+          f.isToggle = true;
+          f.tLabel = val ? "Visible en el sitio" : "Oculto";
+          f.tBg = val ? "rgba(62,142,90,.10)" : "transparent";
+          f.tFg = val ? "#2F6B45" : "rgba(15,26,36,.5)";
+          f.tBorder = val ? "rgba(62,142,90,.4)" : "rgba(11,59,102,.2)";
+          f.tDot = val ? "#3E8E5A" : "rgba(15,26,36,.3)";
+          f.onChange = () => set(!val);
+        }
+        else if (type === "link") {
+          f.isLink = true;
+          f.value = val === "series" ? "Editar series de rendimientos →" : val === "leads" ? "Ver solicitudes →" : "Ver publicaciones →";
+          f.onChange = () => this.go(val);
+        }
+        else f.isText = true;
+        return f;
+      })
+    }];
+  }
+
+  pageMeta() {
+    const M = {
+      Home: { url: "/", file: "Vitalis Home.dc.html", tabs: ["Portada", "Cifras", "Servicios", "Rendimientos", "Calculadora", "Cotizador", "Clientes", "Presencia", "Cierre"] },
+      Inversiones: { url: "/inversiones", file: "Vitalis Inversiones.dc.html", tabs: ["Portada", "Filosofía", "Ventajas", "Rendimientos", "Estrategias", "Cierre"] },
+      "Pasivos laborales": { url: "/actuaria/pasivos-laborales", file: "Vitalis Pasivos Laborales.dc.html", tabs: ["Portada", "Conceptos", "Normas", "Proceso", "Entregables", "Cotizador"] },
+      "Planes de pensiones": { url: "/actuaria/planes-de-pensiones", file: "Vitalis Planes de Pensiones.dc.html", tabs: ["Portada", "Pilares", "Beneficios", "Tipos de plan", "Implementación"] },
+      "Tecnología": { url: "/tecnologia", file: "Vitalis Tecnologia.dc.html", tabs: ["Portada", "Herramientas", "Calculadora", "Expediente", "Cierre"] },
+      Usuarios: { url: "/usuarios", file: "Vitalis Usuarios.dc.html", tabs: ["Portada", "Accesos"] },
+      Graficador: { url: "/tecnologia/graficador", file: "Vitalis Graficador.dc.html", tabs: ["Portada", "Series"] },
+      "Expediente digital": { url: "/documentos", file: "Vitalis Expediente Digital.dc.html", tabs: ["Carpetas", "Permisos"] },
+      Blog: { url: "/blog", file: "Vitalis Blog.dc.html", tabs: ["Portada", "Suscripción"] },
+      Nosotros: { url: "/nosotros", file: "Vitalis Nosotros.dc.html", tabs: ["Portada", "Cifras", "Quiénes somos", "Misión y visión", "Valores", "Presencia"] },
+      Contacto: { url: "/contacto", file: "", tabs: ["Portada", "Cierre"] }
+    };
+    return M[this.state.page] || M.Home;
+  }
+
+  tabGroups() {
+    const t = this.state.tab;
+    if (this.state.page !== "Home") return this.otherPageGroups();
+    const g = (title, help, fields, rep) => Object.assign({ title, help, fields: fields || [], hasRepeater: false, rows: [], repTitle: "" }, rep || {});
+    if (t === "Portada") return [
+      g("Encabezado", "Se muestra en la primera pantalla del sitio, sobre la imagen principal.", [
+        this.field("Antetítulo", "antetitulo", { help: "Texto corto en mayúsculas encima del título." }),
+        this.field("Título", "titulo", { type: "area", max: 70, req: true, help: "La segunda mitad se muestra en cursiva automáticamente." }),
+        this.field("Bajada", "bajada", { type: "area", max: 220 }),
+        this.field("Imagen principal", "img", { type: "image", fileName: "home-hero-equipo.jpg", fileMeta: "412KB — 1600x2000 — image/jpeg", rec: "1600×2000 px" })
+      ]),
+      g("Botones", "", [
+        this.field("Botón principal", "cta1", { max: 28, req: true }),
+        this.field("Botón secundario", "cta2", { max: 28 })
+      ]),
+      g("Dato destacado", "Tarjeta flotante sobre la imagen.", [
+        this.field("Cifra", "badgeCifra"), this.field("Descripción", "badgeTexto")
+      ])
+    ];
+    if (t === "Cifras") return [g("Cifras clave", "Cuatro columnas bajo la portada. Si agregas más de cuatro, se acomodan en dos filas.", [], this.repeater("Cifras", "Cifras", ["Cifra", "Descripción"]))];
+    if (t === "Servicios") return [g("Servicios", "", [this.field("Título de sección", "secServicios", { type: "area", max: 80 })], this.repeater("Servicios", "Tarjetas de servicio", ["Título", "Descripción"]))];
+    if (t === "Rendimientos") return [g("Gráfica de rendimientos", "", [
+      this.field("Mostrar sección", "mostrarRend", { type: "toggle" }),
+      this.field("Título", "rendTitulo", { type: "area", max: 80 }),
+      this.field("Nota al pie", "rendNota", { type: "area", max: 160 }),
+      this.field("Datos de la gráfica", "x", { type: "link", text: "Editar series de rendimientos →", to: "series" })
+    ])];
+    if (t === "Calculadora") return [
+      g("Textos", "", [this.field("Título", "calcTitulo"), this.field("Bajada", "calcBajada", { type: "area", max: 200 })]),
+      g("Supuestos del cálculo", "La fórmula no se modifica desde el panel. Cambiar estos valores actualiza el resultado que ve el usuario.", [
+        this.field("Edad de retiro", "edadRetiro", { type: "num", unit: "años · entre 55 y 70" }),
+        this.field("Rendimiento real anual", "rendReal", { type: "num", unit: "% · entre 1 y 9" }),
+        this.field("Años de pensión", "aniosPension", { type: "num", unit: "años" })
+      ])
+    ];
+    if (t === "Cotizador") return [g("Formulario de propuesta", "Los envíos llegan al correo indicado y quedan guardados en Solicitudes.", [
+      this.field("Título", "cotTitulo", { type: "area", max: 90 }),
+      this.field("Correo de aviso", "cotCorreo", { req: true }),
+      this.field("Solicitudes recibidas", "x", { type: "link", text: "Ver solicitudes →", to: "leads" })
+    ])];
+    if (t === "Clientes") return [g("Logos de clientes", "Se muestran en escala de grises. Sube SVG o PNG con fondo transparente.", [], this.repeater("Clientes", "Logos", ["Nombre", "Archivo"]))];
+    if (t === "Presencia") return [g("Oficinas", "", [], this.repeater("Presencia", "Oficinas", ["Ciudad", "Dirección"]))];
+    return [g("Cierre", "", [
+      this.field("Título", "cierreTitulo", { type: "area", max: 70 }),
+      this.field("Bajada", "cierreBajada", { type: "area", max: 160 }),
+      this.field("Número de WhatsApp", "whats", { help: "Sin espacios, con código de país." }),
+      this.field("Botón flotante de WhatsApp", "floating", { type: "toggle" })
+    ])];
+  }
+
+  pfield(label, key, opts) {
+    const o = opts || {}, val = this.state.post[key] || "";
+    return {
+      label, value: val, help: o.help || "", rows: String(o.rows || 3),
+      isArea: !!o.area, isText: !o.area,
+      counter: o.max ? val.length + " / " + o.max : "",
+      onChange: e => this.setState(st => ({ post: Object.assign({}, st.post, { [key]: e.target.value }) }))
+    };
+  }
+
+  gf(label, key, span) {
+    return {
+      label, value: this.state.g[key], span: span || "span 1",
+      onChange: e => this.setState(st => ({ g: Object.assign({}, st.g, { [key]: e.target.value }) }))
+    };
+  }
+
+  openPage(name) {
+    const first = { Home: "Portada", "Expediente digital": "Carpetas" }[name] || "Portada";
+    this.setState({ screen: "home", page: name, tab: first });
+  }
+
+  renderVals() {
+    const s = this.state, sc = s.screen;
+    const meta = this.pageMeta();
+
+    const archData = [
+      { nombre: "home-hero-equipo.jpg", tipo: "JPG", meta: "1600×2000 · 412 KB", usada: "Home · portada", cat: "Imágenes", tint: "repeating-linear-gradient(135deg,#E7EEF6 0 10px,#F3F7FB 10px 20px)" },
+      { nombre: "oficina-cdmx.jpg", tipo: "JPG", meta: "2000×1333 · 620 KB", usada: "Home · presencia", cat: "Imágenes", tint: "repeating-linear-gradient(135deg,#EDEAE2 0 10px,#F7F5F0 10px 20px)" },
+      { nombre: "equipo-actuarial.jpg", tipo: "JPG", meta: "1800×1200 · 540 KB", usada: "Sin usar", cat: "Imágenes", tint: "repeating-linear-gradient(135deg,#E7EEF6 0 10px,#F3F7FB 10px 20px)" },
+      { nombre: "cliente-01.svg", tipo: "SVG", meta: "vectorial · 12 KB", usada: "Home · clientes", cat: "Logos", tint: "#F1F4F8" },
+      { nombre: "cliente-02.svg", tipo: "SVG", meta: "vectorial · 9 KB", usada: "Home · clientes", cat: "Logos", tint: "#F1F4F8" },
+      { nombre: "abelica-global.svg", tipo: "SVG", meta: "vectorial · 14 KB", usada: "Pasivos laborales", cat: "Logos", tint: "#F1F4F8" },
+      { nombre: "politica-esg-2026.pdf", tipo: "PDF", meta: "520 KB", usada: "Inversiones", cat: "Documentos", tint: "#F5F2EC" },
+      { nombre: "guia-servicios-2026.pdf", tipo: "PDF", meta: "610 KB", usada: "Inversiones", cat: "Documentos", tint: "#F5F2EC" }
+    ];
+    const archShown = archData.filter(a => s.archFiltro === "Todos" || a.cat === s.archFiltro);
+
+    const postData = [
+      { titulo: "Qué cambia en la NIF D-3 para el cierre 2026", cat: "Actuaría", estado: "Publicada", fecha: "12 ago 2026" },
+      { titulo: "Tasa de reemplazo: por qué el 30% no alcanza", cat: "Pensiones", estado: "Publicada", fecha: "28 jul 2026" },
+      { titulo: "Carta trimestral de inversiones · 2T 2026", cat: "Inversiones", estado: "Publicada", fecha: "15 jul 2026" },
+      { titulo: "Cómo leer el factsheet de tu fondo", cat: "Inversiones", estado: "Borrador", fecha: "—" },
+      { titulo: "Vitalis en el Foro de Inversión Previsional", cat: "Prensa", estado: "Borrador", fecha: "—" }
+    ];
+    const postShown = postData
+      .filter(p => s.postFiltro === "Todas" || (s.postFiltro === "Publicadas" ? p.estado === "Publicada" : p.estado === "Borrador"))
+      .map(p => {
+        const pub = p.estado === "Publicada";
+        return Object.assign({}, p, {
+          bg: pub ? "rgba(62,142,90,.10)" : "rgba(11,59,102,.06)",
+          fg: pub ? "#2F6B45" : "rgba(15,26,36,.5)",
+          border: pub ? "rgba(62,142,90,.35)" : "rgba(11,59,102,.18)",
+          edit: () => this.setState(st => ({
+            screen: "post",
+            post: Object.assign({}, st.post, {
+              titulo: p.titulo, cat: p.cat, estado: p.estado,
+              slug: "/blog/" + p.titulo.toLowerCase().replace(/[^a-z0-9áéíóúñ ]/g, "").replace(/ +/g, "-").slice(0, 40),
+              destacado: p.titulo === "Qué cambia en la NIF D-3 para el cierre 2026"
+            })
+          }))
+        });
+      });
+    const onHome = sc === "home" && s.page === "Home";
+    const onOther = sc === "home" && s.page !== "Home";
+    const statuses = Object.keys(s.pageStatus);
+    const pubCount = statuses.filter(k => s.pageStatus[k] === "Publicada").length;
+    const wipCount = statuses.length - pubCount;
+    const urlMap = {
+      Home: "/", Inversiones: "/inversiones", "Pasivos laborales": "/actuaria/pasivos-laborales",
+      "Planes de pensiones": "/actuaria/planes-de-pensiones", "Tecnología": "/tecnologia",
+      Usuarios: "/usuarios", Graficador: "/tecnologia/graficador", "Expediente digital": "/documentos",
+      Nosotros: "/nosotros", Contacto: "/contacto", Blog: "/blog"
+    };
+    const titles = { dash: "Panel de contenido", pages: "Páginas", home: s.page, series: "Series de rendimientos", leads: "Solicitudes", usuarios: "Usuarios", archivos: "Archivos", datos: "Datos globales", medios: "Blog", post: "Blog / publicación" };
+    const navItem = (label, id, badge) => ({
+      label, badge: badge || "",
+      bg: sc === id ? "rgba(29,111,184,.10)" : "transparent",
+      fg: sc === id ? "#0B3B66" : "rgba(15,26,36,.7)",
+      bar: sc === id ? "#0B3B66" : "transparent",
+      weight: sc === id ? "500" : "400",
+      go: () => this.go(id)
+    });
+
+    // preview chart
+    const PW = 460, PH = 240, MAX = 250;
+    const n = s.serie.length;
+    const px = i => (PW * i) / (n - 1);
+    const py = v => PH - 12 - (PH - 24) * (Math.max(0, Math.min(MAX, v)) / MAX);
+    const dv = s.serie.map(r => Number(r[1]) || 0);
+    const tv = s.serie.map(r => (Number(r[1]) || 0) + (Number(r[2]) || 0));
+    const ln = a => a.map((v, i) => (i ? "L" : "M") + px(i).toFixed(1) + " " + py(v).toFixed(1)).join(" ");
+    const area = (top, bot) => ln(top) + " " + bot.map((v, i) => "L" + px(bot.length - 1 - i).toFixed(1) + " " + py(bot[bot.length - 1 - i]).toFixed(1)).join(" ") + " Z";
+
+    const leadRows = [
+      { empresa: "Grupo Herradura", contacto: "M. Fernández", empleados: "1,240", origen: "Cotizador", fecha: "18 ago 2026" },
+      { empresa: "Textiles del Bajío", contacto: "R. Cordero", empleados: "380", origen: "Diagnóstico", fecha: "17 ago 2026" },
+      { empresa: "Nova Farma", contacto: "L. Pineda", empleados: "94", origen: "WhatsApp", fecha: "15 ago 2026" },
+      { empresa: "Constructora Peña", contacto: "J. Alcántara", empleados: "610", origen: "Cotizador", fecha: "14 ago 2026" },
+      { empresa: "Aceros Monterrey", contacto: "S. Vidal", empleados: "2,100", origen: "Diagnóstico", fecha: "12 ago 2026" },
+      { empresa: "Editorial Cauce", contacto: "P. Ruiz", empleados: "58", origen: "Cotizador", fecha: "11 ago 2026" }
+    ];
+
+    return {
+      isLogin: sc === "login", isApp: sc !== "login",
+      isDash: sc === "dash", isPages: sc === "pages", isHome: sc === "home",
+      isSeries: sc === "series", isLeads: sc === "leads",
+      isUsuarios: sc === "usuarios", isArchivos: sc === "archivos",
+      isDatos: sc === "datos", isMedios: sc === "medios", isPost: sc === "post",
+      backToPosts: () => this.go("medios"),
+      nuevoPost: () => this.setState({ screen: "post", post: { titulo: "", extracto: "", cuerpo: "", autor: "", slug: "/blog/nueva-publicacion", cat: "Actuaría", estado: "Borrador", destacado: false } }),
+      postTitulo: s.post.titulo || "Nueva publicación",
+      postEstado: s.post.estado,
+      postSlug: s.post.slug,
+      postDot: s.post.estado === "Publicada" ? "#3E8E5A" : "#C4841C",
+      postAccion: s.post.estado === "Publicada" ? "Pasar a borrador" : "Publicar",
+      togglePost: () => this.setState(st => ({ post: Object.assign({}, st.post, { estado: st.post.estado === "Publicada" ? "Borrador" : "Publicada" }) })),
+      postCampos: [
+        this.pfield("Título", "titulo", { max: 80 }),
+        this.pfield("URL", "slug", { help: "Se genera del título. Puedes ajustarla antes de publicar." }),
+        this.pfield("Extracto", "extracto", { area: true, rows: 3, max: 180, help: "Se muestra en la tarjeta del listado y en buscadores." }),
+        this.pfield("Cuerpo", "cuerpo", { area: true, rows: 14, help: "Un párrafo por línea. Los subtítulos se marcan con ##." }),
+        this.pfield("Autor", "autor"),
+        this.pfield("Tiempo de lectura", "lectura", { help: "Se calcula automáticamente si lo dejas vacío." })
+      ],
+      postCats: ["Actuaría", "Pensiones", "Inversiones", "Prensa"].map(label => ({
+        label,
+        bg: s.post.cat === label ? "#0B3B66" : "transparent",
+        fg: s.post.cat === label ? "#fff" : "rgba(15,26,36,.6)",
+        border: s.post.cat === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState(st => ({ post: Object.assign({}, st.post, { cat: label }) }))
+      })),
+      destLabel: s.post.destacado ? "Destacado" : "No destacado",
+      destBg: s.post.destacado ? "rgba(62,142,90,.10)" : "transparent",
+      destFg: s.post.destacado ? "#2F6B45" : "rgba(15,26,36,.5)",
+      destBorder: s.post.destacado ? "rgba(62,142,90,.4)" : "rgba(11,59,102,.2)",
+      destDot: s.post.destacado ? "#3E8E5A" : "rgba(15,26,36,.3)",
+      toggleDest: () => this.setState(st => ({ post: Object.assign({}, st.post, { destacado: !st.post.destacado }) })),
+      crumb: titles[sc] || "Panel",
+      savedNote: s.saved,
+      doLogin: () => this.go("dash"),
+      doLogout: () => this.go("login"),
+      save: () => this.setState({ saved: "Guardado hace unos segundos" }),
+      langs: ["ES", "EN", "FR"].map(c => ({
+        code: c, bg: s.lang === c ? "#0B3B66" : "transparent",
+        fg: s.lang === c ? "#fff" : "rgba(15,26,36,.55)",
+        pick: () => this.setState({ lang: c })
+      })),
+      navGroups: [
+        { title: "Páginas", items: [
+          Object.assign(navItem("Home", "home"), {
+            go: () => this.openPage("Home"),
+            bg: onHome ? "rgba(29,111,184,.10)" : "transparent",
+            fg: onHome ? "#0B3B66" : "rgba(15,26,36,.7)",
+            bar: onHome ? "#0B3B66" : "transparent",
+            weight: onHome ? "500" : "400"
+          }),
+          Object.assign(navItem("Todas las páginas", "pages"), {
+            bg: onOther || sc === "pages" ? "rgba(29,111,184,.10)" : "transparent",
+            fg: onOther || sc === "pages" ? "#0B3B66" : "rgba(15,26,36,.7)",
+            bar: onOther || sc === "pages" ? "#0B3B66" : "transparent",
+            weight: onOther || sc === "pages" ? "500" : "400",
+            badge: onOther ? s.page : ""
+          })
+        ]},
+        { title: "Contenido", items: [
+          Object.assign(navItem("Blog", "medios"), {
+            bg: sc === "medios" || sc === "post" ? "rgba(29,111,184,.10)" : "transparent",
+            fg: sc === "medios" || sc === "post" ? "#0B3B66" : "rgba(15,26,36,.7)",
+            bar: sc === "medios" || sc === "post" ? "#0B3B66" : "transparent",
+            weight: sc === "medios" || sc === "post" ? "500" : "400"
+          }),
+          navItem("Series de rendimientos", "series")
+        ]},
+        { title: "Solicitudes", items: [navItem("Bandeja de entrada", "leads", "6")] },
+        { title: "Configuración", items: [navItem("Usuarios", "usuarios"), navItem("Archivos", "archivos"), navItem("Datos globales", "datos")] }
+      ],
+      dashGroups: [
+        { title: "Páginas", cards: [
+          { title: "Home", body: "Portada: hero, cifras, servicios, gráfica, calculadora y cotizador.", meta: "Publicada", go: () => this.openPage("Home") },
+          { title: "Todas las páginas", body: "Inversiones, Actuaría, Tecnología, Usuarios, Nosotros y Contacto.", meta: pubCount + " publicadas · " + wipCount + " en construcción", go: () => this.go("pages") }
+        ]},
+        { title: "Contenido", cards: [
+          { title: "Blog", body: "Artículos y notas de prensa que salen en /blog.", meta: "3 publicadas · 2 borradores", go: () => this.go("medios") },
+          { title: "Series de rendimientos", body: "Datos anuales que alimentan la gráfica de la home.", meta: "2004 – 2025", go: () => this.go("series") },
+          { title: "Solicitudes", body: "Cotizaciones y diagnósticos recibidos desde el sitio.", meta: "6 sin leer", go: () => this.go("leads") }
+        ]},
+        { title: "Configuración", cards: [
+          { title: "Usuarios", body: "Cuentas y roles del panel.", meta: "", go: () => this.go("usuarios") },
+          { title: "Archivos", body: "Imágenes y documentos del sitio.", meta: "", go: () => this.go("archivos") },
+          { title: "Datos globales", body: "Teléfonos, WhatsApp, oficinas, redes y avisos legales.", meta: "", go: () => this.go("datos") }
+        ]}
+      ],
+      pages: Object.keys(s.pageStatus).map(name => {
+        const st = s.pageStatus[name];
+        const pub = st === "Publicada";
+        return {
+          name, status: st,
+          url: (urlMap[name] || "/"),
+          bg: pub ? "rgba(62,142,90,.10)" : "rgba(196,132,28,.10)",
+          fg: pub ? "#2F6B45" : "#8A5B12",
+          border: pub ? "rgba(62,142,90,.35)" : "rgba(196,132,28,.35)",
+          toggle: () => this.setState(st2 => ({ pageStatus: { ...st2.pageStatus, [name]: st2.pageStatus[name] === "Publicada" ? "En construcción" : "Publicada" } })),
+          edit: () => this.openPage(name)
+        };
+      }),
+      pageName: s.page,
+      pageEstado: s.pageStatus[s.page],
+      pageDot: s.pageStatus[s.page] === "Publicada" ? "#3E8E5A" : "#C4841C",
+      pageUrl: meta.url,
+      previewHref: meta.file || "Vitalis En Construccion.dc.html?p=" + encodeURIComponent(s.page),
+      usuariosRows: [
+        { ini: "AL", correo: "a.lozano@vitalis.com.mx", rol: "Administrador", acceso: "hoy, 09:14" },
+        { ini: "MC", correo: "m.cervantes@vitalis.com.mx", rol: "Editor", acceso: "ayer, 17:40" },
+        { ini: "RS", correo: "r.silva@vitalis.com.mx", rol: "Editor", acceso: "18 ago 2026" },
+        { ini: "JP", correo: "j.padilla@vitalis.com.mx", rol: "Solo lectura", acceso: "02 ago 2026" }
+      ],
+      roles: [
+        { rol: "Administrador", puede: "Todo, incluyendo publicar páginas, editar datos globales e invitar usuarios." },
+        { rol: "Editor", puede: "Edita el contenido de cualquier página y publica. No administra usuarios ni datos globales." },
+        { rol: "Solo lectura", puede: "Consulta el contenido y las solicitudes recibidas. No guarda cambios." }
+      ],
+      archFiltros: ["Todos", "Imágenes", "Documentos", "Logos"].map(label => ({
+        label,
+        bg: s.archFiltro === label ? "#0B3B66" : "transparent",
+        fg: s.archFiltro === label ? "#fff" : "rgba(15,26,36,.6)",
+        border: s.archFiltro === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ archFiltro: label })
+      })),
+      archConteo: archShown.length + " de " + archData.length + " archivos",
+      archivos: archShown,
+      datosGrupos: [
+        { title: "Contacto", fields: [
+          this.gf("Teléfono", "tel"), this.gf("WhatsApp", "whats"),
+          this.gf("Correo de contacto", "correo"), this.gf("Registro CNBV", "cnbv")
+        ]},
+        { title: "Oficinas", fields: [
+          this.gf("Ciudad de México", "mx", "span 2"),
+          this.gf("Mont-Royal, Canadá", "ca", "span 2"),
+          this.gf("Lisboa, Portugal", "pt", "span 2")
+        ]},
+        { title: "Pie de página", fields: [
+          this.gf("LinkedIn", "linkedin"), this.gf("Razón social", "legal")
+        ]}
+      ],
+      postFiltros: ["Todas", "Publicadas", "Borradores"].map(label => ({
+        label,
+        bg: s.postFiltro === label ? "#0B3B66" : "transparent",
+        fg: s.postFiltro === label ? "#fff" : "rgba(15,26,36,.6)",
+        border: s.postFiltro === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ postFiltro: label })
+      })),
+      posts: postShown,
+      tabs: meta.tabs.map(label => ({
+        label,
+        fg: s.tab === label ? "#0B3B66" : "rgba(15,26,36,.55)",
+        bar: s.tab === label ? "#0B3B66" : "transparent",
+        weight: s.tab === label ? "500" : "400",
+        pick: () => this.setState({ tab: label })
+      })),
+      groups: this.tabGroups(),
+      seriesRows: s.serie.map((r, i) => ({
+        year: r[0], d: r[1], rv: r[2],
+        onD: e => this.setState(st => { const nx = st.serie.map(x => x.slice()); nx[i][1] = Number(e.target.value) || 0; return { serie: nx }; }),
+        onRv: e => this.setState(st => { const nx = st.serie.map(x => x.slice()); nx[i][2] = Number(e.target.value) || 0; return { serie: nx }; })
+      })),
+      pvGrid: [0, 50, 100, 150, 200, 250].map(v => ({ y: py(v).toFixed(1) })),
+      pvDeuda: area(dv, dv.map(() => 0)),
+      pvTotal: area(tv, dv),
+      leadFilters: ["Todas", "Cotizador", "Diagnóstico", "WhatsApp"].map(label => ({
+        label,
+        bg: s.leadFilter === label ? "#0B3B66" : "transparent",
+        fg: s.leadFilter === label ? "#fff" : "rgba(15,26,36,.6)",
+        border: s.leadFilter === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ leadFilter: label })
+      })),
+      leads: s.leadFilter === "Todas" ? leadRows : leadRows.filter(l => l.origen === s.leadFilter)
+    };
+  }
+}
+</script>
+</body>
+</html>

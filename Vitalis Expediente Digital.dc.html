@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,400&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#0F1A24;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0B3B66;text-decoration:none}
+a:hover{color:#1D6FB8}
+@media (max-width:1000px){
+  [data-r="hair"]{grid-template-columns:1fr !important;gap:1px !important}
+}
+@media (max-width:640px){
+  [data-r="hair"]{gap:1px !important}
+}
+
+@media (max-width:1000px){
+  [data-r="badge"]{left:18px !important;bottom:18px !important}
+}
+@media (max-width:640px){
+  [data-r="badge"]{position:static !important;margin-top:14px !important}
+  [data-r="xaxis"] > div:nth-child(even){display:none !important}
+}
+@media (max-width:460px){
+  [data-r="xaxis"] > div:nth-child(4n+2), [data-r="xaxis"] > div:nth-child(4n+3), [data-r="xaxis"] > div:nth-child(4n+4){display:none !important}
+}
+
+@media (max-width:1000px){
+  [data-r="stack"]{grid-template-columns:1fr !important;gap:34px !important}
+  [data-r="stack"] > *{grid-column:auto !important}
+  [data-r="tablebox"]{overflow-x:auto !important}
+  [data-r="trow"]{min-width:680px}
+  [data-r="side"]{height:auto !important;position:static !important;border-right:0 !important;border-bottom:1px solid rgba(11,59,102,.12) !important}
+  [data-r="side"] nav{display:flex !important;flex-wrap:wrap !important;overflow:visible !important}
+  [data-r="side"] nav > div{margin-bottom:10px !important}
+  header > div{height:auto !important;flex-wrap:wrap !important;padding-top:14px !important;padding-bottom:14px !important;gap:14px !important}
+  header nav{order:3 !important;width:100% !important;overflow-x:auto !important;gap:22px !important;padding-bottom:4px !important;-webkit-overflow-scrolling:touch}
+  header nav > a, header nav > div{flex:none !important;white-space:nowrap !important}
+  section, article{padding-left:26px !important;padding-right:26px !important}
+  footer > div{padding-left:26px !important;padding-right:26px !important}
+  [style*="position:sticky"][style*="top:110px"], [style*="position:sticky"][style*="top:88px"]{position:static !important}
+  h1{font-size:44px !important;line-height:1.08 !important}
+  h2{font-size:34px !important;line-height:1.14 !important}
+  h3{font-size:27px !important}
+  [style*="min-width:400px"]{min-width:0 !important}
+  [style*="min-width:260px"]{min-width:0 !important}
+}
+@media (max-width:640px){
+  section, article{padding-left:20px !important;padding-right:20px !important;padding-top:44px !important}
+  footer > div{padding-left:20px !important;padding-right:20px !important}
+  h1{font-size:36px !important}
+  h2{font-size:28px !important}
+  h3{font-size:23px !important}
+  [data-r="stack"]{gap:26px !important}
+  [data-r="lead"]{font-size:16px !important;line-height:1.6 !important}
+  [style*="height:420px"]{height:220px !important}
+  [style*="min-height:340px"]{min-height:200px !important}
+}
+
+input:focus{outline:none;border-color:#1D6FB8}
+
+@media (max-width:640px){
+  [data-r="expheader"]{height:auto !important;flex-wrap:wrap !important;padding:14px 20px !important;align-items:flex-start !important}
+  [data-r="expheader"] > div:first-child{width:100% !important}
+  [data-r="expheader"] > div:last-child{width:100% !important}
+  [data-r="expheader"] input{max-width:none !important}
+  main > div[style*="padding: 38px 34px 70px"]{padding:26px 20px 50px !important}
+}
+</style>
+</helmet>
+
+<div data-r="stack" style="min-height:100vh;display:grid;grid-template-columns:250px 1fr">
+
+  <aside data-r="side" style="border-right:1px solid rgba(11,59,102,.12);background:#F5F2EC;display:flex;flex-direction:column;position:sticky;top:0;height:100vh">
+    <div style="padding:22px 22px 24px;border-bottom:1px solid rgba(11,59,102,.1)">
+      <a href="Vitalis Home.dc.html" style="display:flex;align-items:baseline;gap:8px;margin-bottom:16px">
+        <span style="font-family:Newsreader,serif;font-size:21px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+      </a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,26,36,.4)">Expediente digital</div>
+    </div>
+    <nav style="flex:1;overflow-y:auto;padding:18px 0">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(15,26,36,.38);padding:0 22px 10px">Carpetas</div>
+      <sc-for list="{{ carpetas }}" as="c" hint-placeholder-count="5">
+        <button onClick="{{ c.pick }}" style="width:100%;text-align:left;border:0;border-left:2px solid {{ c.bar }};background:{{ c.bg }};color:{{ c.fg }};padding:10px 22px;font-size:14px;font-weight:{{ c.weight }};cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          {{ c.label }}
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(15,26,36,.35)">{{ c.count }}</span>
+        </button>
+      </sc-for>
+    </nav>
+    <div style="border-top:1px solid rgba(11,59,102,.1);padding:16px 22px">
+      <div style="font-size:13px;color:#0B3B66;font-weight:500">Grupo Herradura</div>
+      <div style="font-size:11.5px;color:rgba(15,26,36,.45);margin-top:3px">m.fernandez@herradura.mx · Lectura</div>
+      <a href="Vitalis Tecnologia.dc.html" style="display:inline-block;margin-top:12px;font-size:12.5px;color:rgba(15,26,36,.5)">Salir del expediente</a>
+    </div>
+  </aside>
+
+  <main style="min-width:0;display:flex;flex-direction:column">
+    <header data-r="expheader" style="position:sticky;top:0;z-index:20;background:rgba(251,250,247,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(11,59,102,.12);padding:0 34px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:rgba(15,26,36,.5)">
+        <span>Expediente</span><span style="opacity:.4">/</span><span style="color:#0F1A24">{{ carpeta }}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex:1;min-width:0;justify-content:flex-end">
+        <input type="text" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Buscar documento…" style="border:1px solid rgba(11,59,102,.18);border-radius:100px;background:#fff;padding:9px 18px;font-size:13.5px;width:260px;min-width:0;flex:1;max-width:260px">
+        <button style="background:#0B3B66;color:#fff;border:0;padding:10px 20px;border-radius:100px;font-size:13.5px;font-weight:500;cursor:pointer" style-hover="background:#1D6FB8">Descargar selección</button>
+      </div>
+    </header>
+
+    <div style="padding:38px 34px 70px;max-width:1180px">
+      <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:38px;margin:0 0 8px;color:#0B3B66">{{ carpeta }}</h1>
+      <p style="font-size:14.5px;color:rgba(15,26,36,.55);font-weight:300;margin:0 0 30px">{{ descripcion }}</p>
+
+      <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px;align-items:center">
+        <sc-for list="{{ anios }}" as="a" hint-placeholder-count="4">
+          <button onClick="{{ a.pick }}" style="border:1px solid {{ a.border }};background:{{ a.bg }};color:{{ a.fg }};padding:8px 15px;border-radius:100px;font-size:13px;font-family:'JetBrains Mono',monospace;cursor:pointer">{{ a.label }}</button>
+        </sc-for>
+        <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45)">{{ conteo }}</span>
+      </div>
+
+      <div data-r="tablebox" style="border:1px solid rgba(11,59,102,.15);border-radius:6px;background:#fff;overflow:hidden">
+        <div data-r="trow" style="display:grid;grid-template-columns:2fr .8fr .8fr .6fr auto;gap:16px;padding:13px 22px;background:#F5F2EC;border-bottom:1px solid rgba(11,59,102,.12);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45)">
+          <span>Documento</span><span>Versión</span><span>Actualizado</span><span>Peso</span><span></span>
+        </div>
+        <sc-if value="{{ vacio }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:56px 22px;text-align:center;font-size:14.5px;color:rgba(15,26,36,.45);font-weight:300">No hay documentos que coincidan con la búsqueda.</div>
+        </sc-if>
+        <sc-for list="{{ docs }}" as="d" hint-placeholder-count="6">
+          <div data-r="trow" style="display:grid;grid-template-columns:2fr .8fr .8fr .6fr auto;gap:16px;padding:15px 22px;border-bottom:1px solid rgba(11,59,102,.07);align-items:center;font-size:14.5px">
+            <span style="display:flex;align-items:center;gap:12px;min-width:0">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;border:1px solid rgba(29,111,184,.4);border-radius:3px;padding:2px 5px;color:#1D6FB8;flex:none">{{ d.tipo }}</span>
+              <span style="color:#0B3B66;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ d.nombre }}</span>
+            </span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.5)">{{ d.version }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45)">{{ d.fecha }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.35)">{{ d.peso }}</span>
+            <a href="#" style="font-size:13px;color:#1D6FB8;white-space:nowrap">Descargar</a>
+          </div>
+        </sc-for>
+      </div>
+
+      <div data-r="stack" style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div style="border:1px solid rgba(11,59,102,.14);border-radius:6px;padding:26px 28px;background:#F5F2EC">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45);margin-bottom:12px">Control de versiones</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300">Cada documento conserva sus versiones anteriores. Si tu auditor pide la corrida original de marzo, sigue ahí.</p>
+        </div>
+        <div style="border:1px solid rgba(11,59,102,.14);border-radius:6px;padding:26px 28px;background:#F5F2EC">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(15,26,36,.45);margin-bottom:12px">Permisos por rol</div>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300">Finanzas, RH y los miembros del comité ven carpetas distintas. Toda consulta queda en bitácora.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { carpeta: "Valuaciones actuariales", anio: "Todos", query: "" };
+
+  renderVals() {
+    const s = this.state;
+    const data = {
+      "Valuaciones actuariales": {
+        desc: "Dictámenes y notas de revelación de cada ejercicio, firmados por actuario certificado.",
+        docs: [
+          { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · ejercicio 2025", version: "v2", fecha: "12 ene 2026", peso: "1.2 MB", anio: "2026" },
+          { tipo: "PDF", nombre: "Notas de revelación · estados financieros 2025", version: "v1", fecha: "12 ene 2026", peso: "480 KB", anio: "2026" },
+          { tipo: "XLSX", nombre: "Escenarios de sensibilidad · tasa de descuento", version: "v3", fecha: "09 ene 2026", peso: "220 KB", anio: "2026" },
+          { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · ejercicio 2024", version: "v1", fecha: "15 ene 2025", peso: "1.1 MB", anio: "2025" },
+          { tipo: "PDF", nombre: "Conciliación con valuación anterior", version: "v1", fecha: "15 ene 2025", peso: "310 KB", anio: "2025" }
+        ]
+      },
+      "Estados de cuenta": {
+        desc: "Corte mensual del fondo con rendimiento, aportaciones y retiros del periodo.",
+        docs: [
+          { tipo: "PDF", nombre: "Estado de cuenta del fondo · julio 2026", version: "v1", fecha: "05 ago 2026", peso: "340 KB", anio: "2026" },
+          { tipo: "PDF", nombre: "Estado de cuenta del fondo · junio 2026", version: "v1", fecha: "04 jul 2026", peso: "336 KB", anio: "2026" },
+          { tipo: "XLSX", nombre: "Movimientos del trimestre · abril–junio 2026", version: "v2", fecha: "04 jul 2026", peso: "180 KB", anio: "2026" },
+          { tipo: "PDF", nombre: "Estado de cuenta anual · ejercicio 2025", version: "v1", fecha: "20 ene 2026", peso: "620 KB", anio: "2026" }
+        ]
+      },
+      "Comité de inversión": {
+        desc: "Actas, material de sesión y política vigente del comité.",
+        docs: [
+          { tipo: "PDF", nombre: "Acta de sesión · comité 2026-02", version: "v1", fecha: "22 jul 2026", peso: "260 KB", anio: "2026" },
+          { tipo: "PPTX", nombre: "Material de sesión · desempeño y asignación", version: "v2", fecha: "20 jul 2026", peso: "4.6 MB", anio: "2026" },
+          { tipo: "PDF", nombre: "Política de inversión vigente", version: "v4", fecha: "14 feb 2026", peso: "520 KB", anio: "2026" },
+          { tipo: "PDF", nombre: "Acta de sesión · comité 2025-04", version: "v1", fecha: "18 nov 2025", peso: "244 KB", anio: "2025" }
+        ]
+      },
+      "Plan de pensiones": {
+        desc: "Reglamento, registro ante autoridades y padrón de participantes.",
+        docs: [
+          { tipo: "PDF", nombre: "Reglamento del plan de pensiones", version: "v3", fecha: "03 mar 2026", peso: "780 KB", anio: "2026" },
+          { tipo: "PDF", nombre: "Registro del plan ante autoridades", version: "v1", fecha: "28 sep 2024", peso: "410 KB", anio: "2024" },
+          { tipo: "XLSX", nombre: "Padrón de participantes · corte julio 2026", version: "v7", fecha: "02 ago 2026", peso: "1.4 MB", anio: "2026" }
+        ]
+      },
+      "Contratos": {
+        desc: "Contrato de servicios, convenios modificatorios y avisos de privacidad firmados.",
+        docs: [
+          { tipo: "PDF", nombre: "Contrato de prestación de servicios actuariales", version: "v2", fecha: "11 feb 2025", peso: "560 KB", anio: "2025" },
+          { tipo: "PDF", nombre: "Convenio modificatorio · alcance IFRS", version: "v1", fecha: "06 may 2026", peso: "180 KB", anio: "2026" }
+        ]
+      }
+    };
+
+    const folder = data[s.carpeta];
+    const q = s.query.trim().toLowerCase();
+    const docs = folder.docs.filter(d =>
+      (s.anio === "Todos" || d.anio === s.anio) &&
+      (!q || d.nombre.toLowerCase().indexOf(q) >= 0));
+
+    return {
+      carpeta: s.carpeta,
+      descripcion: folder.desc,
+      query: s.query,
+      onQuery: e => this.setState({ query: e.target.value }),
+      carpetas: Object.keys(data).map(label => ({
+        label, count: data[label].docs.length,
+        bg: s.carpeta === label ? "rgba(29,111,184,.10)" : "transparent",
+        fg: s.carpeta === label ? "#0B3B66" : "rgba(15,26,36,.7)",
+        bar: s.carpeta === label ? "#0B3B66" : "transparent",
+        weight: s.carpeta === label ? "500" : "400",
+        pick: () => this.setState({ carpeta: label, anio: "Todos", query: "" })
+      })),
+      anios: ["Todos", "2026", "2025", "2024"].map(label => ({
+        label,
+        bg: s.anio === label ? "#0B3B66" : "transparent",
+        fg: s.anio === label ? "#FBFAF7" : "rgba(15,26,36,.6)",
+        border: s.anio === label ? "#0B3B66" : "rgba(11,59,102,.2)",
+        pick: () => this.setState({ anio: label })
+      })),
+      conteo: docs.length + " de " + folder.docs.length + " documentos",
+      docs, vacio: docs.length === 0
+    };
+  }
+}
+</script>
+</body>
+</html>

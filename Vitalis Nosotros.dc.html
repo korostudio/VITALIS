@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Public+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFAF7;color:#0F1A24;font-family:'Public Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#0B3B66;text-decoration:none}
+a:hover{color:#1D6FB8}
+@media (max-width:1000px){
+  [data-r="hair"]{grid-template-columns:1fr !important;gap:1px !important}
+}
+@media (max-width:640px){
+  [data-r="hair"]{gap:1px !important}
+}
+
+.nav-drop{display:none}
+.nav-has:hover .nav-drop{display:block}
+@media (max-width:1000px){
+  [data-r="stack"]{grid-template-columns:1fr !important;gap:34px !important}
+  [data-r="stack"] > *{grid-column:auto !important}
+  header > div{height:auto !important;flex-wrap:wrap !important;padding-top:14px !important;padding-bottom:14px !important;gap:14px !important}
+  header nav{order:3 !important;width:100% !important;overflow-x:auto !important;gap:22px !important;padding-bottom:4px !important}
+  header nav > a, header nav > div{flex:none !important;white-space:nowrap !important}
+  section{padding-left:26px !important;padding-right:26px !important}
+  footer > div{padding-left:26px !important;padding-right:26px !important}
+  [style*="position:sticky"][style*="top:110px"]{position:static !important}
+  h1{font-size:44px !important;line-height:1.08 !important}
+  h2{font-size:34px !important;line-height:1.14 !important}
+  h3{font-size:27px !important}
+  [style*="min-width:260px"]{min-width:0 !important}
+}
+@media (max-width:640px){
+  section{padding-left:20px !important;padding-right:20px !important;padding-top:44px !important}
+  footer > div{padding-left:20px !important;padding-right:20px !important}
+  h1{font-size:36px !important}
+  h2{font-size:28px !important}
+  h3{font-size:23px !important}
+  [data-r="stack"]{gap:26px !important}
+  [data-r="lead"]{font-size:16px !important;line-height:1.6 !important}
+}
+
+@media (max-width:640px){
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"]{padding:9px 20px !important;justify-content:flex-end !important}
+  div[style*="padding: 9px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"] > span:first-child{display:none !important}
+}
+
+@media (max-width:640px){
+  a[href^="https://wa.me/"][style*="position: fixed; right: 26px; bottom: 26px;"]{
+    width:52px !important;height:52px !important;padding:0 !important;
+    right:16px !important;bottom:16px !important;
+    font-size:0 !important;line-height:0 !important;
+    display:flex !important;align-items:center !important;justify-content:center !important;
+    background:#0B3B66 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z'/%3E%3C/svg%3E") no-repeat center/24px 24px !important;
+  }
+}
+
+.nav-toggle-cb{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
+.nav-burger{display:none}
+@media (max-width:1000px){
+  .nav-burger{display:flex !important;flex-direction:column;justify-content:center;gap:5px;width:26px;height:20px;cursor:pointer;margin-left:auto}
+  .nav-burger span{display:block;height:2px;background:#0B3B66;border-radius:2px;transition:transform .2s,opacity .2s}
+  header nav{
+    display:none !important;
+    position:absolute !important;
+    top:100% !important;left:0 !important;right:0 !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    background:#FBFAF7 !important;
+    border-bottom:1px solid rgba(11,59,102,.12) !important;
+    box-shadow:0 18px 30px rgba(11,59,102,.12) !important;
+    padding:8px 26px 18px !important;
+    overflow:visible !important;
+    gap:0 !important;
+    height:auto !important;
+    order:0 !important;
+    width:auto !important;
+  }
+  header nav > a, header nav > div.nav-has{
+    flex:none !important;white-space:normal !important;width:100% !important;
+    padding:13px 0 !important;border-bottom:1px solid rgba(11,59,102,.08) !important;
+  }
+  .nav-toggle-cb:checked ~ nav{display:flex !important}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(2){opacity:0}
+  .nav-toggle-cb:checked ~ .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .nav-drop{display:block !important;position:static !important;padding-top:0 !important}
+  .nav-drop > div{box-shadow:none !important;border:0 !important;padding:2px 0 8px 14px !important;min-width:0 !important;background:transparent !important}
+  .nav-has{flex-direction:column !important;align-items:flex-start !important;height:auto !important;padding-bottom:2px !important}
+  .nav-has > span{padding:0 0 6px !important;font-weight:500;color:#0B3B66;display:block}
+  .nav-drop a{border-bottom:0 !important;padding:8px 0 !important}
+  header nav ~ a{display:none !important}
+}
+@media (min-width:1001px){
+  .nav-toggle-cb, .nav-burger{display:none !important}
+}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<div style="background:#0B3B66;color:#EAF2FA;font-size:12.5px">
+  <div style="max-width:1280px;margin:0 auto;padding:9px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <span style="opacity:.85">Vitalis Today for Tomorrow · empresa global de gestión de inversiones</span>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="tel:525552353000" style="color:#EAF2FA;opacity:.85">52 (55) 5235 3000</a>
+      <div style="display:flex;gap:2px;align-items:center">
+        <span style="padding:3px 8px;border-radius:3px;background:rgba(255,255,255,.16);font-weight:600">ES</span>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">EN</a>
+        <a href="#!" style="color:#EAF2FA;padding:3px 8px;opacity:.6">FR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header style="position:sticky;top:0;z-index:40;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(11,59,102,.12)">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px;height:74px;display:flex;align-items:center;justify-content:space-between;gap:36px">
+    <a href="Vitalis Home.dc.html" style="display:flex;align-items:baseline;gap:9px">
+      <span style="font-family:Newsreader,serif;font-size:27px;letter-spacing:.14em;color:#0B3B66">VITALIS</span>
+      <span style="width:6px;height:6px;border-radius:50%;background:#1D6FB8;display:inline-block"></span>
+    </a>
+    <input type="checkbox" id="navtoggle" class="nav-toggle-cb"><label for="navtoggle" class="nav-burger" aria-label="Abrir menú"><span></span><span></span><span></span></label><nav style="display:flex;align-items:center;gap:26px;font-size:14.5px;height:100%">
+      <a href="Vitalis Nosotros.dc.html" style="color:#0B3B66;font-weight:500;border-bottom:2px solid #1D6FB8;padding-bottom:3px">Nosotros</a>
+      <a href="Vitalis Inversiones.dc.html">Inversiones</a>
+      <div class="nav-has" style="position:relative;display:flex;align-items:center;height:100%">
+        <span style="cursor:pointer">Actuaría</span>
+        <div class="nav-drop" style="position:absolute;top:100%;left:-18px;padding-top:10px">
+          <div style="background:#FBFAF7;border:1px solid rgba(11,59,102,.14);border-radius:6px;box-shadow:0 18px 40px rgba(11,59,102,.14);padding:8px;min-width:290px">
+            <a href="Vitalis Pasivos Laborales.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Pasivos laborales</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">NIF D-3, IFRS, US GAAP y German GAAP</span>
+            </a>
+            <a href="Vitalis Planes de Pensiones.dc.html" style="display:block;padding:12px 14px;border-radius:4px" style-hover="background:rgba(29,111,184,.08)">
+              <span style="display:block;font-weight:500;color:#0B3B66">Planes de pensiones privados</span>
+              <span style="display:block;font-size:12.5px;color:rgba(15,26,36,.55);font-weight:300;margin-top:3px">Diseño, implementación y administración</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <a href="Vitalis Tecnologia.dc.html">Tecnología</a>
+      <a href="Vitalis Blog.dc.html">Blog</a>
+      <a href="Vitalis Usuarios.dc.html">Usuarios</a>
+    </nav>
+    <a href="Vitalis En Construccion.dc.html?p=Agenda%20tu%20diagn%C3%B3stico" style="background:#0B3B66;color:#fff;padding:11px 20px;border-radius:100px;font-size:14px;font-weight:500;white-space:nowrap" style-hover="background:#1D6FB8;color:#fff">Agendar diagnóstico</a>
+  </div>
+</header>
+
+<section style="max-width:1280px;margin:0 auto;padding:72px 40px 0">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:rgba(15,26,36,.45);margin-bottom:46px">
+    <a href="Vitalis Home.dc.html" style="color:rgba(15,26,36,.45)">Inicio</a> · <span style="color:#0B3B66">Nosotros</span>
+  </div>
+  <div data-r="stack" style="display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:end;padding-bottom:64px">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:26px">
+        <span style="width:22px;height:1px;background:#1D6FB8;display:inline-block"></span>Vitalis Today for Tomorrow
+      </div>
+      <h1 style="font-family:Newsreader,serif;font-weight:300;font-size:58px;line-height:1.06;letter-spacing:-.02em;margin:0 0 26px;color:#0B3B66;text-wrap:pretty">Preservamos el valor en el tiempo, con una visión de legado y <span style="font-style:italic;color:#1D6FB8">por un mundo de mayor riqueza</span></h1>
+      <p data-r="lead" style="font-size:18px;line-height:1.62;color:rgba(15,26,36,.68);max-width:560px;margin:0;font-weight:300">Somos una empresa global especializada en gestión de inversiones, con amplia experiencia en pensiones y previsión social.</p>
+    </div>
+    <div style="height:420px;border-radius:6px;background:repeating-linear-gradient(135deg,#E7EEF6 0 18px,#F3F7FB 18px 36px);display:flex;align-items:flex-end;padding:20px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(11,59,102,.45)">foto · equipo Vitalis</span>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid rgba(11,59,102,.12);background:#F5F2EC">
+  <div style="max-width:1280px;margin:0 auto;padding:0 40px">
+    <div data-r="hair" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(11,59,102,.14)">
+      <sc-for list="{{ cifras }}" as="c" hint-placeholder-count="4">
+        <div style="background:#F5F2EC;padding:44px 34px">
+          <div style="font-family:Newsreader,serif;font-size:52px;line-height:1;color:#0B3B66">{{ c.n }}</div>
+          <div style="font-size:14.5px;line-height:1.5;color:rgba(15,26,36,.6);margin-top:14px;font-weight:300">{{ c.t }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:104px 40px">
+  <div data-r="stack" style="display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start">
+    <div style="position:sticky;top:110px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">01 — Quiénes somos</div>
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0;color:#0B3B66;text-wrap:pretty">Treinta y cuatro años invirtiendo a largo plazo</h2>
+    </div>
+    <div>
+      <sc-for list="{{ quienes }}" as="q" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:52px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid rgba(11,59,102,.13)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#1D6FB8;padding-top:6px">{{ q.n }}</span>
+          <p style="margin:0;font-size:18px;line-height:1.65;color:rgba(15,26,36,.76);font-weight:300;text-wrap:pretty">{{ q.t }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0B3B66;color:#EAF2FA">
+  <div style="max-width:1280px;margin:0 auto;padding:100px 40px">
+    <div data-r="stack" style="display:grid;grid-template-columns:1fr 1fr;gap:80px">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FC0EC;margin-bottom:22px">02 — Nuestra misión</div>
+        <p style="font-family:Newsreader,serif;font-weight:300;font-size:38px;line-height:1.28;margin:0;color:#fff;text-wrap:pretty">Invertimos por un futuro de nuevos comienzos. Creemos en los comienzos tempranos y en el milagro de la disciplina financiera para un legado sólido.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FC0EC;margin-bottom:22px">03 — Nuestra visión</div>
+        <p style="font-family:Newsreader,serif;font-weight:300;font-size:38px;line-height:1.28;margin:0 0 34px;color:#fff;font-style:italic;text-wrap:pretty">Crear valor en el tiempo para un futuro próspero.</p>
+        <div style="border-top:1px solid rgba(234,242,250,.2);padding-top:26px;font-size:16px;line-height:1.65;color:rgba(234,242,250,.68);font-weight:300">Desde 2018 somos signatarios de los “Principios de Inversión Responsable” de la Organización de las Naciones Unidas. Fuimos el primer asesor independiente mexicano en adherirse a estos principios.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1280px;margin:0 auto;padding:104px 40px">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">04 — Nuestros valores</div>
+  <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0 0 12px;color:#0B3B66;max-width:620px;text-wrap:pretty">Seis frases que decimos en voz alta</h2>
+  <p style="font-size:15px;color:rgba(15,26,36,.5);font-weight:300;margin:0 0 44px">Así se habla dentro de Vitalis.</p>
+  <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+    <sc-for list="{{ valores }}" as="v" hint-placeholder-count="6">
+      <div style="border:1px solid rgba(11,59,102,.15);border-radius:6px;overflow:hidden;background:#fff">
+        <div style="height:150px;background:{{ v.tint }};display:flex;align-items:flex-end;padding:14px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;background:#fff;border-radius:3px;padding:3px 8px;color:rgba(11,59,102,.55)">{{ v.ph }}</span>
+        </div>
+        <div style="padding:30px 28px 32px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#1D6FB8;margin-bottom:14px">{{ v.n }}</div>
+          <p style="margin:0;font-family:Newsreader,serif;font-size:27px;line-height:1.22;color:#0B3B66;text-wrap:pretty">{{ v.t }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section style="border-top:1px solid rgba(11,59,102,.12);background:#F5F2EC">
+  <div style="max-width:1280px;margin:0 auto;padding:96px 40px">
+    <div data-r="stack" style="display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1D6FB8;margin-bottom:18px">05 — Presencia y respaldo</div>
+        <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:44px;line-height:1.12;margin:0 0 26px;color:#0B3B66;text-wrap:pretty">Tres oficinas y una red internacional</h2>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <sc-for list="{{ sellos }}" as="s" hint-placeholder-count="4">
+            <div style="width:120px;height:46px;border:1px solid rgba(11,59,102,.14);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;color:rgba(11,59,102,.5);background:#fff">{{ s }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <div data-r="stack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+        <sc-for list="{{ oficinas }}" as="o" hint-placeholder-count="3">
+          <div style="border-top:2px solid #0B3B66;padding-top:24px">
+            <div style="font-family:Newsreader,serif;font-size:27px;line-height:1.2;color:#0B3B66;margin-bottom:14px">{{ o.ciudad }}</div>
+            <p style="margin:0 0 12px;font-size:14.5px;line-height:1.6;color:rgba(15,26,36,.65);font-weight:300">{{ o.dir }}</p>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(15,26,36,.5)">{{ o.tel }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#0B3B66;color:#EAF2FA">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center">
+    <div>
+      <h2 style="font-family:Newsreader,serif;font-weight:300;font-size:52px;line-height:1.08;margin:0 0 20px;text-wrap:pretty">Hablemos de tu <span style="font-style:italic;color:#8FC0EC">obligación laboral</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:rgba(234,242,250,.7);font-weight:300;margin:0;max-width:540px">Un diagnóstico inicial sin costo con uno de nuestros actuarios certificados.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:260px">
+      <a href="Vitalis En Construccion.dc.html?p=Agenda%20tu%20diagn%C3%B3stico" style="background:#FBFAF7;color:#0B3B66;padding:16px 30px;border-radius:100px;font-size:15px;font-weight:500;text-align:center" style-hover="background:#8FC0EC;color:#0B3B66">Agendar diagnóstico</a>
+      <a href="https://wa.me/525541430497" style="border:1px solid rgba(234,242,250,.35);color:#EAF2FA;padding:16px 30px;border-radius:100px;font-size:15px;font-weight:500;text-align:center" style-hover="border-color:#EAF2FA;background:rgba(255,255,255,.08);color:#EAF2FA">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#08284A;color:rgba(234,242,250,.7);font-size:14px">
+  <div data-r="stack" style="max-width:1280px;margin:0 auto;padding:60px 40px 34px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px">
+    <div>
+      <div style="font-family:Newsreader,serif;font-size:26px;letter-spacing:.14em;color:#FBFAF7;margin-bottom:18px">VITALIS</div>
+      <p style="line-height:1.65;font-weight:300;margin:0;max-width:300px">Vitalis® Expertos en Pensiones S.A. de C.V. Miembro de la red internacional de actuarios ABELICA Global.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">México</div>
+      <p style="line-height:1.65;font-weight:300;margin:0">Gobernador Rafael Rebollar 47 y 56, San Miguel Chapultepec, C.P. 11850, CDMX<br>T: 52 (55) 5235 3000<br>contacto@vitalis.com.mx</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,242,250,.45);margin-bottom:18px">Más</div>
+      <div style="display:flex;flex-direction:column;gap:11px">
+        <a href="Vitalis Home.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inicio</a>
+        <a href="Vitalis Inversiones.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Inversiones</a>
+        <a href="Vitalis Blog.dc.html" style="color:rgba(234,242,250,.72);font-weight:300" style-hover="color:#fff">Blog</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:20px 40px 40px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:24px;font-size:12.5px;color:rgba(234,242,250,.45)">
+    <span>©2026 Todos los derechos reservados · Vitalis</span>
+    <a href="Vitalis En Construccion.dc.html?p=Aviso%20de%20Privacidad" style="color:rgba(234,242,250,.6)">Aviso de Privacidad</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/525541430497" style="position:fixed;right:26px;bottom:26px;z-index:60;background:#0B3B66;color:#fff;padding:14px 22px;border-radius:100px;font-size:14px;font-weight:500;box-shadow:0 12px 30px rgba(11,59,102,.32)" style-hover="background:#1D6FB8;color:#fff">WhatsApp</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    const azul = "repeating-linear-gradient(135deg,#E7EEF6 0 14px,#F3F7FB 14px 28px)";
+    const arena = "repeating-linear-gradient(135deg,#EDEAE2 0 14px,#F7F5F0 14px 28px)";
+    return {
+      cifras: [
+        { n: "34", t: "años de experiencia, con procesos y rendimientos auditados" },
+        { n: "1,800", t: "razones sociales asesoradas" },
+        { n: "500 mil", t: "trabajadores impactados a través de planes, fondos y cajas de ahorro" },
+        { n: "12,177", t: "millones de pesos asesorados en cuentas discrecionales y consultoría" }
+      ],
+      quienes: [
+        { n: "01", t: "Somos una empresa global especializada en gestión de inversiones, con amplia experiencia en pensiones y previsión social." },
+        { n: "02", t: "Contamos con más de 34 años de experiencia, con procesos y rendimientos auditados, buscamos ayudar a las empresas y a las personas en la gestión de sus activos de largo plazo, invirtiendo los recursos de manera profesional y contribuyendo de esta manera al desarrollo económico." },
+        { n: "03", t: "Damos asesoría a más de 1,800 razones sociales, generamos impacto en más de 500,000 trabajadores a través de planes de pensiones, fondos y cajas de ahorro y contamos con más de 12,177 MDP asesorados a través de cuentas discrecionales y consultoría." },
+        { n: "04", t: "Contamos con un área actuarial que genera mucho valor al diseñar estrategias donde la exigibilidad de los recursos en el tiempo son un factor esencial." }
+      ],
+      valores: [
+        { n: "Valor 01", t: "Si yo brinco, tu brincas.", tint: azul, ph: "valores03.jpg" },
+        { n: "Valor 02", t: "¡Siempre existe una oportunidad para ayudar a los demás!", tint: arena, ph: "valores06.jpg" },
+        { n: "Valor 03", t: "Bien, de buenas y a la primera.", tint: azul, ph: "valores01.jpg" },
+        { n: "Valor 04", t: "Nuestro comportamiento es ejemplar.", tint: arena, ph: "valores05.jpg" },
+        { n: "Valor 05", t: "Nos motivamos a ser mejores personas.", tint: azul, ph: "valores02.jpg" },
+        { n: "Valor 06", t: "¡Si quedas, lo cumples!", tint: arena, ph: "valores04.jpg" }
+      ],
+      oficinas: [
+        { ciudad: "México", dir: "Gobernador Rafael Rebollar No. 47 y No. 56 piso 3, San Miguel Chapultepec, C.P. 11850, Ciudad de México.", tel: "T: 52 (55) 5235 3000" },
+        { ciudad: "Canadá", dir: "4400 Ch. Côte de Liesse, Porte 200, Mont-Royal (Quebec) H4N 2P7", tel: "T: (514) 987-9550" },
+        { ciudad: "Portugal", dir: "Campo Grande 35, 4ºD — 1700-087, Lisboa, Portugal", tel: "" }
+      ],
+      sellos: ["UNPRI", "ABELICA GLOBAL", "FIP 2026", "MILLAS"]
+    };
+  }
+}
+</script>
+</body>
+</html>
