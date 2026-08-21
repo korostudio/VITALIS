@@ -1,16 +1,13 @@
 "use client";
 
-import { buttonVariants } from "@heroui/styles";
-
 const usuariosRows = [
   { ini: "AL", correo: "a.lozano@vitalis.com.mx", rol: "Administrador", acceso: "hoy, 09:14" },
   { ini: "MC", correo: "m.cervantes@vitalis.com.mx", rol: "Editor", acceso: "ayer, 17:40" },
-  { ini: "RS", correo: "r.silva@vitalis.com.mx", rol: "Editor", acceso: "18 ago 2026" },
   { ini: "JP", correo: "j.padilla@vitalis.com.mx", rol: "Solo lectura", acceso: "02 ago 2026" },
 ];
 
 const roles = [
-  { rol: "Administrador", puede: "Todo, incluyendo publicar páginas, editar datos globales e invitar usuarios." },
+  { rol: "Administrador", puede: "Todo, incluyendo publicar páginas y editar datos globales." },
   { rol: "Editor", puede: "Edita el contenido de cualquier página y publica. No administra usuarios ni datos globales." },
   { rol: "Solo lectura", puede: "Consulta el contenido y las solicitudes recibidas. No guarda cambios." },
 ];
@@ -18,10 +15,7 @@ const roles = [
 export function UsersScreen() {
   return (
     <div className="max-w-[1080px] px-5 py-11 sm:px-9">
-      <div className="mb-2 flex flex-wrap items-start justify-between gap-6">
-        <h1 className="font-serif text-[34px] font-light text-accent sm:text-[40px]">Usuarios</h1>
-        <button className={buttonVariants({ size: "md" }) + " !rounded-full"}>Invitar usuario</button>
-      </div>
+      <h1 className="mb-2 font-serif text-[34px] font-light text-accent sm:text-[40px]">Usuarios</h1>
       <p className="mb-8 max-w-[620px] text-[15px] font-light text-foreground/55">
         Quién puede entrar al panel y qué puede hacer. El rol se cambia desde aquí y aplica al instante.
       </p>
