@@ -7,47 +7,32 @@ import { routes } from "@/lib/routes";
 type Doc = { tipo: string; nombre: string; version: string; fecha: string; peso: string; anio: string };
 
 const data: Record<string, { desc: string; docs: Doc[] }> = {
-  "Valuaciones actuariales": {
-    desc: "Dictámenes y notas de revelación de cada ejercicio, firmados por actuario certificado.",
+  Presentaciones: {
+    desc: "Material corporativo y comercial de Vitalis, con la edición vigente de cada documento.",
     docs: [
-      { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · ejercicio 2025", version: "v2", fecha: "12 ene 2026", peso: "1.2 MB", anio: "2026" },
-      { tipo: "PDF", nombre: "Notas de revelación · estados financieros 2025", version: "v1", fecha: "12 ene 2026", peso: "480 KB", anio: "2026" },
-      { tipo: "XLSX", nombre: "Escenarios de sensibilidad · tasa de descuento", version: "v3", fecha: "09 ene 2026", peso: "220 KB", anio: "2026" },
-      { tipo: "PDF", nombre: "Dictamen actuarial NIF D-3 · ejercicio 2024", version: "v1", fecha: "15 ene 2025", peso: "1.1 MB", anio: "2025" },
-      { tipo: "PDF", nombre: "Conciliación con valuación anterior", version: "v1", fecha: "15 ene 2025", peso: "310 KB", anio: "2025" },
+      { tipo: "PDF", nombre: "Corporativa · Vitalis 2026", version: "v1", fecha: "10 feb 2026", peso: "1.4 MB", anio: "2026" },
+      { tipo: "PDF", nombre: "Actuaría 2026", version: "v1", fecha: "15 feb 2026", peso: "890 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "Cajas y Fondos de Ahorro 2026", version: "v1", fecha: "15 feb 2026", peso: "760 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "Inversiones 2026", version: "v1", fecha: "20 feb 2026", peso: "1.1 MB", anio: "2026" },
+      { tipo: "PDF", nombre: "Vitalis One Pager 2026", version: "v1", fecha: "05 ene 2026", peso: "320 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "Rendimientos Mensuales 2026", version: "v3", fecha: "01 ago 2026", peso: "410 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "Política ASG 2026", version: "v1", fecha: "14 feb 2026", peso: "540 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "Plan de Pensiones 2026", version: "v1", fecha: "03 mar 2026", peso: "780 KB", anio: "2026" },
+      { tipo: "PDF", nombre: "US Residents 2026", version: "v1", fecha: "20 feb 2026", peso: "690 KB", anio: "2026" },
     ],
   },
-  "Estados de cuenta": {
-    desc: "Corte mensual del fondo con rendimiento, aportaciones y retiros del periodo.",
+  Webinars: {
+    desc: "Grabaciones de nuestros seminarios sobre economía, pensiones y pasivos laborales, con la presentación de cada sesión.",
     docs: [
-      { tipo: "PDF", nombre: "Estado de cuenta del fondo · julio 2026", version: "v1", fecha: "05 ago 2026", peso: "340 KB", anio: "2026" },
-      { tipo: "PDF", nombre: "Estado de cuenta del fondo · junio 2026", version: "v1", fecha: "04 jul 2026", peso: "336 KB", anio: "2026" },
-      { tipo: "XLSX", nombre: "Movimientos del trimestre · abril–junio 2026", version: "v2", fecha: "04 jul 2026", peso: "180 KB", anio: "2026" },
-      { tipo: "PDF", nombre: "Estado de cuenta anual · ejercicio 2025", version: "v1", fecha: "20 ene 2026", peso: "620 KB", anio: "2026" },
-    ],
-  },
-  "Comité de inversión": {
-    desc: "Actas, material de sesión y política vigente del comité.",
-    docs: [
-      { tipo: "PDF", nombre: "Acta de sesión · comité 2026-02", version: "v1", fecha: "22 jul 2026", peso: "260 KB", anio: "2026" },
-      { tipo: "PPTX", nombre: "Material de sesión · desempeño y asignación", version: "v2", fecha: "20 jul 2026", peso: "4.6 MB", anio: "2026" },
-      { tipo: "PDF", nombre: "Política de inversión vigente", version: "v4", fecha: "14 feb 2026", peso: "520 KB", anio: "2026" },
-      { tipo: "PDF", nombre: "Acta de sesión · comité 2025-04", version: "v1", fecha: "18 nov 2025", peso: "244 KB", anio: "2025" },
-    ],
-  },
-  "Plan de pensiones": {
-    desc: "Reglamento, registro ante autoridades y padrón de participantes.",
-    docs: [
-      { tipo: "PDF", nombre: "Reglamento del plan de pensiones", version: "v3", fecha: "03 mar 2026", peso: "780 KB", anio: "2026" },
-      { tipo: "PDF", nombre: "Registro del plan ante autoridades", version: "v1", fecha: "28 sep 2024", peso: "410 KB", anio: "2024" },
-      { tipo: "XLSX", nombre: "Padrón de participantes · corte julio 2026", version: "v7", fecha: "02 ago 2026", peso: "1.4 MB", anio: "2026" },
-    ],
-  },
-  Contratos: {
-    desc: "Contrato de servicios, convenios modificatorios y avisos de privacidad firmados.",
-    docs: [
-      { tipo: "PDF", nombre: "Contrato de prestación de servicios actuariales", version: "v2", fecha: "11 feb 2025", peso: "560 KB", anio: "2025" },
-      { tipo: "PDF", nombre: "Convenio modificatorio · alcance IFRS", version: "v1", fecha: "06 may 2026", peso: "180 KB", anio: "2026" },
+      { tipo: "MP4", nombre: "2026: Mejores perspectivas económicas, mayor volatilidad y riesgo", version: "v1", fecha: "22 ene 2026", peso: "210 MB", anio: "2026" },
+      { tipo: "MP4", nombre: "Prima de antigüedad: de pasivo contingente a estrategia financiera", version: "v1", fecha: "20 nov 2025", peso: "180 MB", anio: "2025" },
+      { tipo: "MP4", nombre: "Reducción en la tasa de referencia y su impacto en el pasivo laboral", version: "v1", fecha: "27 may 2025", peso: "195 MB", anio: "2025" },
+      { tipo: "MP4", nombre: "Bienestar financiero", version: "v1", fecha: "06 feb 2025", peso: "160 MB", anio: "2025" },
+      { tipo: "MP4", nombre: "Entrevista en directo: un diálogo abierto con actuarios expertos en pasivos laborales", version: "v1", fecha: "18 sep 2024", peso: "220 MB", anio: "2024" },
+      { tipo: "MP4", nombre: "Seguridad social y planes de pensiones privados: optimizando la inversión en el talento humano", version: "v1", fecha: "25 abr 2024", peso: "175 MB", anio: "2024" },
+      { tipo: "MP4", nombre: "Perspectivas económicas 2024", version: "v1", fecha: "28 nov 2023", peso: "168 MB", anio: "2023" },
+      { tipo: "MP4", nombre: "Reforma IMSS: incremento en cuotas patronales", version: "v1", fecha: "26 oct 2022", peso: "150 MB", anio: "2022" },
+      { tipo: "MP4", nombre: "Tasa de descuento y su impacto en el pasivo laboral", version: "v1", fecha: "14 jul 2022", peso: "140 MB", anio: "2022" },
     ],
   },
 };
@@ -110,18 +95,6 @@ export function ExpedienteDigital() {
             );
           })}
         </nav>
-        <div className="border-t border-accent/10 px-5.5 py-4">
-          <div className="text-[13px] font-medium text-accent">Grupo Herradura</div>
-          <div className="mt-0.5 text-[11.5px] text-foreground/45">
-            m.fernandez@herradura.mx · Lectura
-          </div>
-          <Link
-            href={routes.tecnologia}
-            className="mt-3 inline-block text-[12.5px] text-foreground/50"
-          >
-            Salir del expediente
-          </Link>
-        </div>
       </aside>
 
       <main className="flex min-w-0 flex-col">
